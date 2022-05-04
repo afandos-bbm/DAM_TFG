@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "855101464206",
+    "project_id": "cuevadelrecambio",
+    "storage_bucket": "cuevadelrecambio.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:855101464206:android:93ad63772ee60a355d73df",
+        "android_client_info": {
+          "package_name": "me.alejandrofan2.cuevadelrecambio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "855101464206-5ebqvoagkc01kqatuciqctfep13b9flm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRh32r4yy5nTlKAbbhS_ZT6cRDR0iYEGQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "855101464206-5ebqvoagkc01kqatuciqctfep13b9flm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

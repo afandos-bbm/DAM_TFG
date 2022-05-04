@@ -1,0 +1,330 @@
+[{
+  "nombre": "UNIVERSAL",
+  "logo": "assets/universal.png"
+}, {
+  "nombre": "ABARTH",
+  "logo": "assets/abarth.png",
+  "modelos": [
+    "595",
+    "695"
+  ]
+}, {
+  "nombre": "ALFA_ROMEO",
+  "logo": "assets/alfaromeo.png",
+  "modelos": [
+    "4C",
+    "GIULIA",
+    "GIULIETTA",
+    "STELVIO"
+  ]
+}, {
+  "nombre": "ASTON_MARTIN",
+  "logo": "assets/astonmartin.png",
+  "modelos": [
+    "D89",
+    "RAPIDE",
+    "VANTAGE",
+    "V8_VANTAGE",
+    "V12_VANTAGE",
+    "VANQUISH"
+  ]
+}, {
+  "nombre": "AUDI",
+  "logo": "assets/audi.png",
+  "modelos": [
+    "A1",
+    "A2",
+    "A3",
+    "A4",
+    "A5",
+    "A6",
+    "A7",
+    "A8",
+    "Q2",
+    "Q3",
+    "Q4",
+    "Q5",
+    "Q7",
+    "Q8",
+    "TT",
+    "R8",
+    "S1",
+    "S2",
+    "S3",
+    "S4",
+    "S5",
+    "S6",
+    "S7",
+    "S8",
+    "SQ2",
+    "SQ5",
+    "SQ7",
+    "SQ8",
+    "TTS",
+    "RS3",
+    "RS4",
+    "RS5",
+    "RS6",
+    "RS7",
+    "RSQ3",
+    "RSQ8"
+  ]
+}, {
+  "nombre": "BENTLEY",
+  "logo": "assets/bentley.png",
+  "modelos": [
+    "CONTINENTAL",
+    "FLYING_SPUR"
+  ]
+}, {
+  "nombre": "BMW",
+  "logo": "assets/bmw.png",
+  "modelos": [
+    "SERIES1",
+    "SERIES2",
+    "SERIES3",
+    "SERIES4",
+    "SERIES5",
+    "SERIES6",
+    "SERIES7",
+    "SERIES8",
+    "Z3",
+    "Z4",
+    "X1",
+    "X2",
+    "X3",
+    "X4",
+    "X5",
+    "X6",
+    "X7",
+    "M1",
+    "M2",
+    "M3",
+    "M4",
+    "M4",
+    "M6",
+    "M8",
+    "X3_M",
+    "X4_M",
+    "X5_M",
+    "X6_M",
+    "Z3_M",
+    "Z4_M"
+  ]
+}, {
+  "nombre": "CHEVROLET",
+  "logo": "assets/chevrolet.png",
+  "modelos": [
+    "CAMARO",
+    "CORVETTE"
+  ]
+}, {
+  "nombre": "CHRYSLER",
+  "logo": "assets/chrysler.png",
+  "modelos": [
+    "300_C"
+  ]
+}, {
+  "nombre": "CUPRA",
+  "logo": "assets/cupra.png",
+  "modelos": [
+    "ATECA",
+    "BORN",
+    "FORMENTOR",
+    "LEON",
+    "LEON_ST"
+  ]
+}, {
+  "nombre": "DODGE",
+  "logo": "assets/dodge.png",
+  "modelos": [
+    "CHALLENGER",
+    "CHARGER",
+    "DURANGO",
+    "VIPER"
+  ]
+}, {
+  "nombre": "FORD",
+  "logo": "assets/ford.png",
+  "modelos": [
+    "FIESTA",
+    "FIESTA_ST",
+    "FOCUS",
+    "FOCUS_ST",
+    "FOCUS_RS",
+    "MUSTANG",
+    "F-150_RAPTOR"
+  ]
+}, {
+  "nombre": "HONDA",
+  "logo": "assets/honda.png",
+  "modelos": [
+    "ACCORD",
+    "CIVIC",
+    "CIVIC_TYPE_R",
+    "NSX",
+    "S2000"
+  ]
+}, {
+  "nombre": "HYUNDAI",
+  "logo": "assets/hyundai.png",
+  "modelos": [
+    "I20",
+    "I30",
+    "VELOSTER"
+  ]
+}, {
+  "nombre": "INFINITI",
+  "logo": "assets/infiniti.png",
+  "modelos": [
+    "SERIES_G"
+  ]
+}, {
+  "nombre": "JAGUAR",
+  "logo": "assets/jaguar.png",
+  "modelos": [
+    "XK"
+  ]
+}, {
+  "nombre": "JEEP",
+  "logo": "assets/jeep.png",
+  "modelos": [
+    "GRAND_CHEROKEE",
+    "WRANGLER"
+  ]
+}, {
+  "nombre": "LAND_ROVER",
+  "logo": "assets/landrover.png",
+  "modelos": [
+    "DEFENDER",
+    "DISCOVERY",
+    "RANGE_ROVER",
+    "RANGE_ROVER_EVOQUE",
+    "RANGE_ROVER_SPORT",
+    "RANGE_ROVER_VELAR"
+  ]
+}, {
+  "nombre": "LEXUS",
+  "logo": "assets/lexus.png",
+  "modelos": [
+    "GS",
+    "IS",
+    "RC",
+    "RX"
+  ]
+}, {
+  "nombre": "MAZDA",
+  "logo": "assets/mazda.png",
+  "modelos": [
+    "MX-5",
+    "RX-7",
+    "RX-8"
+  ]
+}, {
+  "nombre": "MERCEDES_BENZ",
+  "logo": "assets/mercedesbenz.png",
+  "modelos": [
+    "AMG_GT/GTS/GTC",
+    "CLASE_A",
+    "CLASE_B",
+    "CLASE_C",
+    "CLASE_E",
+    "CLASE_G",
+    "CL",
+    "CLA",
+    "CLK",
+    "CLS",
+    "GL",
+    "GLA",
+    "GLB",
+    "GLC",
+    "GLE",
+    "GLS",
+    "ML",
+    "CLASE_S",
+    "CLASE_X",
+    "CLASE_R"
+  ]
+}, {
+  "nombre": "MINI",
+  "logo": "assets/mini.png",
+  "modelos": [
+    "CLUBMAN",
+    "COUNTRYMAN",
+    "COOPER",
+    "ONE"
+  ]
+}, {
+  "nombre": "MITSUBISHI",
+  "logo": "assets/mitsubishi.png",
+  "modelos": [
+    "LANCER_EVOLUTION",
+    "L200",
+    "L300",
+    "PAJERO",
+    "MONTERO"
+  ]
+}, {
+  "nombre": "NISSAN",
+  "logo": "assets/nissan.png",
+  "modelos": [
+    "350Z",
+    "370Z",
+    "GT-R",
+    "S-12",
+    "S-13",
+    "S-14",
+    "S-14A",
+    "S-15",
+    "180SX",
+    "240SX",
+    "FAIRLADY"
+  ]
+}, {
+  "nombre": "SEAT",
+  "logo": "assets/seat.png",
+  "modelos": [
+    "IBIZA",
+    "LEON"
+  ]
+}, {
+  "nombre": "SUBARU",
+  "logo": "assets/subaru.png",
+  "modelos": [
+    "BRZ",
+    "IMPREZA",
+    "LEGACY"
+  ]
+}, {
+  "nombre": "SUZUKI",
+  "logo": "assets/suzuki.png",
+  "modelos": [
+    "JIMMY",
+    "SWIFT"
+  ]
+}, {
+  "nombre": "TOYOTA",
+  "logo": "assets/toyota.png",
+  "modelos": [
+    "CHASER",
+    "ARISTO",
+    "SUPRA"
+  ]
+}, {
+  "nombre": "VOLKSWAGEN",
+  "logo": "assets/volkswagen.png",
+  "modelos": [
+    "GOLF",
+    "GOLF_GTI",
+    "GOLF_R",
+    "SCIROCCO",
+    "SCIROCCO_R"
+  ]
+}, {
+  "nombre": "VOLVO",
+  "logo": "assets/volvo.png",
+  "modelos": [
+    "T5",
+    "740"
+  ]
+}]
