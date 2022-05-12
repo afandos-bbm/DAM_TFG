@@ -7,12 +7,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
+import 'di.dart' as di;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await MyApp.loadJson();
+  await di.init();
   runApp(MyApp());
 }
 
@@ -39,7 +42,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<CartProvider>(
-            create: (context) => CartProvider()),
+            create: (context) => GetIt.I.get()),
       ],
       child: MaterialApp(
         routes: {

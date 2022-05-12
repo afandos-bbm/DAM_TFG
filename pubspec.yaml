@@ -17,6 +17,9 @@ dependencies:
   provider: ^6.0.2
   google_sign_in: ^5.3.1
   flutter_facebook_auth: ^4.3.4
+  get_it: ^7.2.0
+  shared_preferences: ^2.0.15
+  shared_preferences_android: ^2.0.12
 
 dev_dependencies:
   flutter_test:

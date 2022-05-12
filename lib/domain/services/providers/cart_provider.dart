@@ -1,34 +1,44 @@
 import 'package:client_project/domain/entities/producto.dart';
+import 'package:client_project/domain/services/firestore_service.dart';
 import 'package:flutter/material.dart';
 
 class CartProvider with ChangeNotifier {
-  List<Producto> _cart = List<Producto>.empty(growable: true);
+  CartProvider(this._cart) {
+    _cart.forEach((element) {
+      if (element.quantity > 0) {
+        totalPrice += element.quantity * element.price;
+      }
+    });
+  }
+
+  List<Producto> _cart;
   double totalPrice = 0;
+  bool loading = false;
 
   List<Producto> get cart => _cart;
 
   set cart(List<Producto> cart) {
     cart.forEach((element) {
-      totalPrice += element.price;
+      if (element.quantity > 0) {
+        totalPrice += element.quantity * element.price;
+      }
     });
     _cart = cart;
     notifyListeners();
   }
 
   void addProduct(Producto product) {
-    if (_cart.any((element) => element.id == product.id)) {
-      print('Producto ya existe');
-      _cart.forEach((element) {
-        if (element.id == product.id) {
-          element.quantity++;
-          totalPrice += element.price;
-        }
-      });
-    } else {
-      product.quantity = 1;
+    int index = _cart.indexWhere((element) => element.id == product.id);
+
+    if (index == -1) {
+      totalPrice += product.price;
       _cart.add(product);
+    } else {
+      _cart[index].quantity++;
       totalPrice += product.price;
     }
+
+    updateCartToFB(_cart);
     notifyListeners();
   }
 
@@ -58,6 +68,7 @@ class CartProvider with ChangeNotifier {
       });
       totalPrice -= product.price;
     }
+    updateCartToFB(_cart);
     notifyListeners();
   }
 }

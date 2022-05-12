@@ -5,6 +5,7 @@ import 'package:client_project/ui/themes/light_theme.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:client_project/main.dart';
+import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
 class CartPage extends StatefulWidget {
@@ -20,9 +21,9 @@ class _CartPageState extends State<CartPage> {
     return Scaffold(
       body: Consumer<CartProvider>(
         builder: (_, snap, __) {
-          snap.cart.forEach((element) {
-            print(element);
-          });
+          if (snap.loading == true) {
+            return CircularProgressIndicator();
+          }
           return Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -86,6 +87,7 @@ class _CartPageState extends State<CartPage> {
   Widget productCartList(BuildContext context) {
     ListView listView;
     return Consumer<CartProvider>(builder: (context, snapshot, child) {
+      snapshot.loading = true;
       snapshot.cart.forEach((element) {
         listView = ListView.builder(
           itemBuilder: (_, index) => Container(
@@ -139,10 +141,8 @@ class _CartPageState extends State<CartPage> {
                                                   : LightTheme.primaryColor)),
                                       // TODO - implement
                                       onPressed: () {
-                                        setState(() {
-                                          snapshot
-                                              .addProduct(snapshot.cart[index]);
-                                        });
+                                        snapshot
+                                            .addProduct(snapshot.cart[index]);
                                       },
                                     )),
                                 Container(
@@ -163,10 +163,8 @@ class _CartPageState extends State<CartPage> {
                                       ),
                                       // TODO - implement
                                       onPressed: () {
-                                        setState(() {
-                                          snapshot.removeProduct(
-                                              snapshot.cart[index], false);
-                                        });
+                                        snapshot.removeProduct(
+                                            snapshot.cart[index], false);
                                       },
                                     )),
                               ],
@@ -186,10 +184,10 @@ class _CartPageState extends State<CartPage> {
                                   color: Colors.white,
                                 ),
                                 onPressed: () {
-                                  Provider.of<CartProvider>(context,
-                                          listen: false)
-                                      .removeProduct(Producto.productoFromId(
-                                          snapshot.cart[index].id), true);
+                                  GetIt.I<CartProvider>().removeProduct(
+                                      Producto.productoFromId(
+                                          snapshot.cart[index].id),
+                                      true);
                                   //ScaffoldMessenger.of(context).showSnackBar(
                                   //    SnackBar(content: Text("Removed from cart.")));
                                 },
@@ -205,6 +203,7 @@ class _CartPageState extends State<CartPage> {
           itemCount: snapshot.cart.length,
         );
       });
+      snapshot.loading = false;
       return listView;
     });
   }
@@ -232,4 +231,6 @@ class _CartPageState extends State<CartPage> {
           ]),
     );
   }
+
+  Future<List<Producto>> getCartFromProvider() async {}
 }

@@ -10,7 +10,7 @@ class Producto {
   String description;
   List<String> tags;
   List<dynamic> variantes;
-  int quantity = 0;
+  int quantity = 1;
 
   Producto({
     this.id,
@@ -44,13 +44,14 @@ class Producto {
         'variantes': variantes,
       };
 
-  static Producto productoFromId(String id) {
+  static Producto productoFromId(String id, {int quantity = 1}) {
     Producto product;
     String jsonString = MyApp.productsJson;
     List<dynamic> jsonResponse = json.decode(jsonString);
     jsonResponse.forEach((element) {
       if (element['id'] == id) {
         product = Producto.fromJson(element);
+        product.quantity = quantity;
       }
     });
     return product;
@@ -58,6 +59,6 @@ class Producto {
 
   @override
   String toString() {
-    return 'Producto{id: $id, name: $name, image: $image, brand: $brand, price: $price, description: $description, tags: $tags, variantes: $variantes}';
+    return 'Producto{id: $id, name: $name, image: $image, brand: $brand, price: $price, description: $description, tags: $tags, variantes: $variantes, quantity: $quantity}';
   }
 }

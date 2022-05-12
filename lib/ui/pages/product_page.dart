@@ -4,6 +4,7 @@ import 'package:client_project/main.dart';
 import 'package:client_project/ui/themes/dark_theme.dart';
 import 'package:client_project/ui/themes/light_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
 class ProductPage extends StatelessWidget {
@@ -64,8 +65,7 @@ class ProductPage extends StatelessWidget {
             )),
         floatingActionButton: ElevatedButton(
           onPressed: () {
-            final cartProvider =
-                Provider.of<CartProvider>(context, listen: false);
+            final cartProvider = GetIt.I<CartProvider>();
             Producto producto = Producto.productoFromId(id);
             cartProvider.addProduct(producto);
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
