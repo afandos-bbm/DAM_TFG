@@ -1,10 +1,10 @@
-import 'package:client_project/pages/signup.page.dart';
-import 'package:client_project/widgets/auth_service.dart';
-import 'package:client_project/widgets/social_button.dart';
+import 'package:client_project/domain/services/auth_service.dart';
+import 'package:client_project/ui/pages/login/register_page.dart';
+import 'package:client_project/ui/themes/dark_theme.dart';
+import 'package:client_project/ui/themes/light_theme.dart';
+import 'package:client_project/ui/widgets/social_button.dart';
 import 'package:flutter/material.dart';
 import 'package:client_project/main.dart';
-import 'package:client_project/themes/dark_theme.dart';
-import 'package:client_project/themes/light_theme.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -77,7 +77,7 @@ class _LoginPageState extends State<LoginPage> {
                                     left: 10,
                                   ),
                                   child: Text(
-                                    "Sigin in to continue",
+                                    "Signin in to continue",
                                     style: TextStyle(
                                       fontSize: 13.0,
                                     ),
@@ -154,15 +154,14 @@ class _LoginPageState extends State<LoginPage> {
                                 "Login",
                                 style: TextStyle(color: Colors.white),
                               ),
-                              onPressed: () async {
-                                if (await login(context, _emailController.text,
-                                    _passwordController.text)) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                          content: Text("Login correct.")));
-                                  Navigator.of(context).pushNamed("/home");
-                                }
-                              },
+                              onPressed: () async => await login(
+                                      context,
+                                      _emailController.text,
+                                      _passwordController.text)
+                                  ? Navigator.of(context)
+                                      .pushReplacementNamed("/home")
+                                  : ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(content: Text("Login failed"))),
                             ))
                       ]),
                 ),
@@ -177,7 +176,12 @@ class _LoginPageState extends State<LoginPage> {
                   text: "Login In with Facebook",
                   image: Image.asset("assets/facebook.png"),
                   heightImage: 24,
-                  onPress: () {},
+                  onPress: () async {
+                    await loginWithFacebook(context)
+                        ? Navigator.of(context).pushReplacementNamed("/home")
+                        : ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text("Login failed")));
+                  },
                 ),
                 SizedBox(
                   height: 20,
@@ -186,7 +190,12 @@ class _LoginPageState extends State<LoginPage> {
                   text: "Login In with Google",
                   image: Image.asset("assets/google.png"),
                   heightImage: 24,
-                  onPress: () {},
+                  onPress: () async {
+                    await loginWithGoogle(context)
+                        ? Navigator.of(context).pushReplacementNamed("/home")
+                        : ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text("Login fail.")));
+                  },
                 ),
               ],
             ),

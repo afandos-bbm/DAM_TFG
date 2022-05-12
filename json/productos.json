@@ -1,0 +1,19 @@
+[{
+        "id" : "1",
+        "nombre": "test",
+        "imagen": "assets/abarth.png",
+        "marca": "abarth",
+        "precio": 1.00,
+        "descripcion": "descripcion de prueba abarth", 
+        "tags": ["abarth", "test"]
+    },
+    {
+        "id" : "2",
+        "nombre": "test23",
+        "imagen": "assets/alfaromeo.png",
+        "marca": "BMW",
+        "precio": 23.00,
+        "descripcion": "descripcion de test alfaromeo",
+        "tags": ["BMW", "test"]
+    }
+]

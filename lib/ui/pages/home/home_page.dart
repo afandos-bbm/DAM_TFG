@@ -1,10 +1,11 @@
-import 'package:client_project/widgets/category/category_list.dart';
-import 'package:client_project/widgets/product/product_list.dart';
-import 'package:client_project/widgets/search_box.dart';
+import 'package:client_project/ui/themes/dark_theme.dart';
+import 'package:client_project/ui/themes/light_theme.dart';
+import 'package:client_project/ui/widgets/category/category_list.dart';
+import 'package:client_project/ui/widgets/product/product_list.dart';
+import 'package:client_project/ui/widgets/search_box.dart';
 import 'package:flutter/material.dart';
 import 'package:client_project/main.dart';
-import 'package:client_project/themes/dark_theme.dart';
-import 'package:client_project/themes/light_theme.dart';
+
 
 class HomePage extends StatelessWidget {
   @override
@@ -46,7 +47,7 @@ class HomePage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
-                      "Cataloge",
+                      "Catalogue",
                       style: TextStyle(fontSize: 30),
                     ),
                     // TextButton(

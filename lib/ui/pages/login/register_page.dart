@@ -1,7 +1,7 @@
+import 'package:client_project/domain/services/auth_service.dart';
 import 'package:client_project/main.dart';
-import 'package:client_project/themes/dark_theme.dart';
-import 'package:client_project/themes/light_theme.dart';
-import 'package:client_project/widgets/auth_service.dart';
+import 'package:client_project/ui/themes/dark_theme.dart';
+import 'package:client_project/ui/themes/light_theme.dart';
 import 'package:flutter/material.dart';
 
 class SignupPage extends StatefulWidget {

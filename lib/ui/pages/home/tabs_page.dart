@@ -1,10 +1,10 @@
-import 'package:client_project/pages/cart.page.dart';
-import 'package:client_project/pages/home.page.dart';
-import 'package:client_project/pages/user_page.dart';
+import 'package:client_project/ui/pages/home/cart_page.dart';
+import 'package:client_project/ui/pages/home/home_page.dart';
+import 'package:client_project/ui/pages/home/user_page.dart';
+import 'package:client_project/ui/themes/dark_theme.dart';
+import 'package:client_project/ui/themes/light_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:client_project/main.dart';
-import 'package:client_project/themes/dark_theme.dart';
-import 'package:client_project/themes/light_theme.dart';
 
 class TabsPage extends StatefulWidget {
   @override

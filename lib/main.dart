@@ -1,8 +1,8 @@
-import 'package:client_project/pages/login.page.dart';
-import 'package:client_project/pages/tabs.page.dart';
-import 'package:client_project/providers/cart_provider.dart';
-import 'package:client_project/themes/dark_theme.dart';
-import 'package:client_project/themes/light_theme.dart';
+import 'package:client_project/domain/services/providers/cart_provider.dart';
+import 'package:client_project/ui/pages/home/tabs_page.dart';
+import 'package:client_project/ui/pages/login/login_page.dart';
+import 'package:client_project/ui/themes/dark_theme.dart';
+import 'package:client_project/ui/themes/light_theme.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -12,20 +12,22 @@ import 'package:provider/provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  MyApp.marcasJson = await MyApp.loadJson();
+  await MyApp.loadJson();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   final User _user = FirebaseAuth.instance.currentUser;
   static String marcasJson;
+  static String productsJson;
 
   static get darkMode => _darkMode;
   static bool _darkMode = false;
 
-  static Future<String> loadJson() async {
+  static Future<void> loadJson() async {
     await wait(3);
-    return await rootBundle.loadString('json/marcas.json');
+    productsJson = await rootBundle.loadString('json/productos.json');
+    marcasJson = await rootBundle.loadString('json/marcas.json');
   }
 
   static Future wait(int seconds) {

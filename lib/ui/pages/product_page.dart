@@ -1,23 +1,27 @@
-import 'package:client_project/providers/cart_provider.dart';
-import 'package:client_project/themes/dark_theme.dart';
-import 'package:client_project/themes/light_theme.dart';
+import 'package:client_project/domain/entities/producto.dart';
+import 'package:client_project/domain/services/providers/cart_provider.dart';
+import 'package:client_project/main.dart';
+import 'package:client_project/ui/themes/dark_theme.dart';
+import 'package:client_project/ui/themes/light_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../main.dart';
-
 class ProductPage extends StatelessWidget {
+  final String id;
   final String image;
   final String title;
   final String description;
   final String brand;
   final double price;
+  final List<String> tags;
 
   ProductPage(
       {@required this.image,
+      @required this.id,
       @required this.title,
       @required this.brand,
       @required this.price,
+      @required this.tags,
       @required this.description});
 
   @override
@@ -62,9 +66,8 @@ class ProductPage extends StatelessWidget {
           onPressed: () {
             final cartProvider =
                 Provider.of<CartProvider>(context, listen: false);
-            List<List<dynamic>> cart = cartProvider.cart;
-            cart.add([title, image, description, brand, price]);
-            cartProvider.cart = cart;
+            Producto producto = Producto.productoFromId(id);
+            cartProvider.addProduct(producto);
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text("Added to cart"),
             ));

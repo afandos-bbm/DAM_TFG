@@ -1,4 +1,4 @@
-package com.example.shopfy
+package me.alejandrofan2.cuevadelrecambio
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

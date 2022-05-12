@@ -1,21 +1,25 @@
+import 'package:client_project/ui/pages/product_page.dart';
+import 'package:client_project/ui/themes/dark_theme.dart';
+import 'package:client_project/ui/themes/light_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:client_project/main.dart';
-import 'package:client_project/pages/product.page.dart';
-import 'package:client_project/themes/dark_theme.dart';
-import 'package:client_project/themes/light_theme.dart';
 
 class ProductCard extends StatelessWidget {
+  final String id;
   final String image;
   final String name;
   final String description;
   final String brand;
   final double price;
+  final List<String> tags;
 
   ProductCard(
       {@required this.image,
       @required this.name,
+      @required this.id,
       @required this.brand,
       @required this.price,
+      @required this.tags,
       @required this.description});
 
   @override
@@ -49,18 +53,18 @@ class ProductCard extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: (BuildContext context) => ProductPage(
+                            id: id,
                             image: image,
                             title: name,
                             brand: brand,
                             description: description,
                             price: price,
+                            tags: tags,
                           )));
             },
             child: Container(
               child: Image.asset(
                 image,
-                width: 170,
-                height: 170,
                 fit: BoxFit.cover,
               ),
             ),

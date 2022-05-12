@@ -9,4 +9,10 @@ class Marca {
       : name = json['nombre'],
         image = json['logo'],
         modelos = json['modelos'];
+
+  Map<String, dynamic> toJson() => {
+        'nombre': name,
+        'logo': image,
+        'modelos': modelos,
+      };
 }
