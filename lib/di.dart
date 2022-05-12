@@ -16,9 +16,19 @@ Future<void> init() async {
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   _l.registerSingleton<SharedPreferences>(sharedPreferences);
 
+  if (_l<FirebaseAuth>().currentUser != null) {
+    registerCartProvider();
+  }
+}
+
+Future<void> registerCartProvider() async {
   List<Producto> cart = await getCartFromFB().then((value) {
     print('Cart loaded from firebase $value');
     return value;
   }).catchError((error) => List<Producto>.empty(growable: true));
   _l.registerSingleton<CartProvider>(CartProvider(cart));
+}
+
+Future<void> unRegisterCartProvider() async {
+  _l.unregister<CartProvider>();
 }

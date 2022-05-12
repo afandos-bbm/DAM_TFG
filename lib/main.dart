@@ -16,6 +16,13 @@ void main() async {
   await Firebase.initializeApp();
   await MyApp.loadJson();
   await di.init();
+  GetIt.I<FirebaseAuth>().authStateChanges().listen((user) {
+    if (user != null) {
+      di.registerCartProvider();
+    } else {
+      if (GetIt.I.isRegistered<CartProvider>()) di.unRegisterCartProvider();
+    }
+  });
   runApp(MyApp());
 }
 
