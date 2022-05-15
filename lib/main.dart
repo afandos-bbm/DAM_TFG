@@ -1,4 +1,5 @@
 import 'package:client_project/domain/services/providers/cart_provider.dart';
+import 'package:client_project/domain/services/providers/theme_provider.dart';
 import 'package:client_project/ui/pages/home/tabs_page.dart';
 import 'package:client_project/ui/pages/login/login_page.dart';
 import 'package:client_project/ui/themes/dark_theme.dart';
@@ -17,6 +18,10 @@ void main() async {
   await MyApp.loadJson();
   await di.init();
   GetIt.I<FirebaseAuth>().authStateChanges().listen((user) {
+    if (user.emailVerified)
+      print("Verified");
+    else
+      print("Not verified");
     if (user != null && !(GetIt.I.isRegistered<CartProvider>())) {
       di.registerCartProvider();
     } else {
@@ -29,11 +34,6 @@ void main() async {
 class MyApp extends StatefulWidget {
   static String marcasJson;
   static String productsJson;
-
-  static get darkMode => _darkMode;
-  static changeDarkMode() => _darkMode = !_darkMode;
-
-  static bool _darkMode = true;
 
   static Future<void> loadJson() async {
     await wait(3);
@@ -54,9 +54,14 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    GetIt.I<ThemeProvider>().addListener(() {
+      setState(() {});
+    });
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<CartProvider>(
+            create: (context) => GetIt.I.get()),
+        ChangeNotifierProvider<ThemeProvider>(
             create: (context) => GetIt.I.get()),
       ],
       child: MaterialApp(
@@ -66,9 +71,7 @@ class _MyAppState extends State<MyApp> {
         },
         debugShowCheckedModeBanner: false,
         title: 'La Cueva del Recambio',
-        theme: MyApp._darkMode
-            ? DarkTheme.getDarkTheme()
-            : LightTheme.getLightTheme(),
+        theme: GetIt.I.get<ThemeProvider>().theme,
         home: DefaultTabController(
           length: 3,
           child: _user == null ? LoginPage() : TabsPage(),

@@ -1,8 +1,8 @@
 import 'package:client_project/domain/entities/product.dart';
 import 'package:client_project/domain/services/providers/cart_provider.dart';
+import 'package:client_project/domain/services/providers/theme_provider.dart';
 import 'package:client_project/ui/themes/dark_theme.dart';
 import 'package:client_project/ui/themes/light_theme.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:client_project/main.dart';
 import 'package:get_it/get_it.dart';
@@ -29,7 +29,7 @@ class _CartPageState extends State<CartPage> {
             children: <Widget>[
               Expanded(
                 child: Container(
-                  color: MyApp.darkMode
+                  color: Provider.of<ThemeProvider>(context).isDarkMode
                       ? DarkTheme.backgroundColor
                       : LightTheme.backgroundColor,
                   child: snap.cart.isEmpty
@@ -39,7 +39,7 @@ class _CartPageState extends State<CartPage> {
               ),
               Container(
                 height: 80,
-                color: MyApp.darkMode
+                color: Provider.of<ThemeProvider>(context).isDarkMode
                     ? DarkTheme.lightColor
                     : LightTheme.lightColor,
                 padding: EdgeInsets.only(top: 20, left: 10, right: 10),
@@ -54,7 +54,8 @@ class _CartPageState extends State<CartPage> {
                           Text(
                             "${snap.totalPrice}€",
                             style: TextStyle(
-                                color: MyApp.darkMode
+                                color: Provider.of<ThemeProvider>(context)
+                                        .isDarkMode
                                     ? DarkTheme.primaryColor
                                     : LightTheme.primaryColor,
                                 fontWeight: FontWeight.bold,
@@ -66,7 +67,7 @@ class _CartPageState extends State<CartPage> {
                       onPressed: () {},
                       style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all(
-                              MyApp.darkMode
+                              Provider.of<ThemeProvider>(context).isDarkMode
                                   ? DarkTheme.primaryColor
                                   : LightTheme.primaryColor)),
                       child: Text(
@@ -110,9 +111,10 @@ class _CartPageState extends State<CartPage> {
                       Text(
                         "${snapshot.cart[index].price}€",
                         style: TextStyle(
-                            color: MyApp.darkMode
-                                ? DarkTheme.primaryColor
-                                : LightTheme.primaryColor),
+                            color:
+                                Provider.of<ThemeProvider>(context).isDarkMode
+                                    ? DarkTheme.primaryColor
+                                    : LightTheme.primaryColor),
                       ),
                       SizedBox(
                         height: 10,
@@ -123,7 +125,8 @@ class _CartPageState extends State<CartPage> {
                             height: 39,
                             width: 120,
                             decoration: BoxDecoration(
-                                color: MyApp.darkMode
+                                color: Provider.of<ThemeProvider>(context)
+                                        .isDarkMode
                                     ? DarkTheme.lightColor
                                     : LightTheme.lightColor,
                                 borderRadius:
@@ -136,10 +139,11 @@ class _CartPageState extends State<CartPage> {
                                     child: TextButton(
                                       child: Text("+",
                                           style: TextStyle(
-                                              color: MyApp.darkMode
+                                              color: Provider.of<ThemeProvider>(
+                                                          context)
+                                                      .isDarkMode
                                                   ? DarkTheme.primaryColor
                                                   : LightTheme.primaryColor)),
-                                      // TODO - implement
                                       onPressed: () {
                                         snapshot
                                             .addProduct(snapshot.cart[index]);
@@ -157,11 +161,12 @@ class _CartPageState extends State<CartPage> {
                                       child: Text(
                                         "-",
                                         style: TextStyle(
-                                            color: MyApp.darkMode
+                                            color: Provider.of<ThemeProvider>(
+                                                        context)
+                                                    .isDarkMode
                                                 ? DarkTheme.primaryColor
                                                 : LightTheme.primaryColor),
                                       ),
-                                      // TODO - implement
                                       onPressed: () {
                                         snapshot.removeProduct(
                                             snapshot.cart[index], false);
@@ -214,7 +219,7 @@ class _CartPageState extends State<CartPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Icon(Icons.shopping_cart_sharp,
-                color: MyApp.darkMode
+                color: Provider.of<ThemeProvider>(context).isDarkMode
                     ? DarkTheme.lightColor
                     : LightTheme.lightColor,
                 size: 100),
@@ -222,7 +227,7 @@ class _CartPageState extends State<CartPage> {
             Text(
               "Your cart is empty",
               style: TextStyle(
-                  color: MyApp.darkMode
+                  color: Provider.of<ThemeProvider>(context).isDarkMode
                       ? DarkTheme.reverseColor
                       : LightTheme.reverseColor,
                   fontSize: 20,
@@ -231,6 +236,4 @@ class _CartPageState extends State<CartPage> {
           ]),
     );
   }
-
-  Future<List<Product>> getCartFromProvider() async {}
 }

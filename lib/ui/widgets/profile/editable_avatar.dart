@@ -1,7 +1,9 @@
+import 'package:client_project/domain/services/providers/theme_provider.dart';
 import 'package:client_project/main.dart';
 import 'package:client_project/ui/themes/dark_theme.dart';
 import 'package:client_project/ui/themes/light_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ProfileWidget extends StatelessWidget {
   final String imagePath;
@@ -15,25 +17,29 @@ class ProfileWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color =
-        MyApp.darkMode ? DarkTheme.primaryColor : LightTheme.primaryColor;
+    final color = Provider.of<ThemeProvider>(context).isDarkMode
+        ? DarkTheme.primaryColor
+        : LightTheme.primaryColor;
 
     return Center(
-      child: Stack(
-        children: [
-          buildImage(),
-          Positioned(
-            bottom: 0,
-            right: 4,
-            child: buildEditIcon(color),
-          ),
-        ],
+      child: GestureDetector(
+        onTap: onClicked,
+        child: Stack(
+          children: [
+            buildImage(),
+            Positioned(
+              bottom: 0,
+              right: 4,
+              child: buildEditIcon(color),
+            ),
+          ],
+        ),
       ),
     );
   }
 
   Widget buildImage() {
-    if (imagePath == null || imagePath.isEmpty) {
+    if (imagePath == null || imagePath.isEmpty || imagePath == "") {
       return Container(
         width: 100,
         height: 100,

@@ -1,10 +1,12 @@
+import 'package:client_project/domain/services/providers/theme_provider.dart';
 import 'package:client_project/ui/pages/home/cart_page.dart';
 import 'package:client_project/ui/pages/home/home_page.dart';
-import 'package:client_project/ui/pages/home/user_page.dart';
+import 'package:client_project/ui/pages/home/profile/user_page.dart';
 import 'package:client_project/ui/themes/dark_theme.dart';
 import 'package:client_project/ui/themes/light_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:client_project/main.dart';
+import 'package:provider/provider.dart';
 
 class TabsPage extends StatefulWidget {
   @override
@@ -20,7 +22,7 @@ class _TabsPageState extends State<TabsPage>
     tabController = TabController(length: 3, vsync: this);
   }
 
-  // ! Finish app.
+  // TODO! Finish app.
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -42,13 +44,14 @@ class _TabsPageState extends State<TabsPage>
                 icon: Icon(Icons.person),
               ),
             ],
-            labelColor: MyApp.darkMode
+            labelColor: Provider.of<ThemeProvider>(context).isDarkMode
                 ? DarkTheme.primaryColor
                 : LightTheme.primaryColor,
-            unselectedLabelColor:
-                MyApp.darkMode ? DarkTheme.lightColor : LightTheme.lightColor,
+            unselectedLabelColor: Provider.of<ThemeProvider>(context).isDarkMode
+                ? DarkTheme.lightColor
+                : LightTheme.lightColor,
             labelStyle: TextStyle(
-                backgroundColor: MyApp.darkMode
+                backgroundColor: Provider.of<ThemeProvider>(context).isDarkMode
                     ? DarkTheme.backgroundColor
                     : LightTheme.backgroundColor),
             indicatorSize: TabBarIndicatorSize.label,

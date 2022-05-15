@@ -1,8 +1,10 @@
 import 'package:client_project/domain/services/auth_service.dart';
+import 'package:client_project/domain/services/providers/theme_provider.dart';
 import 'package:client_project/main.dart';
 import 'package:client_project/ui/themes/dark_theme.dart';
 import 'package:client_project/ui/themes/light_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SignupPage extends StatefulWidget {
   @override
@@ -17,18 +19,18 @@ class _SignupPageState extends State<SignupPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: MyApp.darkMode
+        backgroundColor: Provider.of<ThemeProvider>(context).isDarkMode
             ? DarkTheme.backgroundColor
             : LightTheme.backgroundColor,
         appBar: AppBar(
           elevation: 0,
-          backgroundColor: MyApp.darkMode
+          backgroundColor: Provider.of<ThemeProvider>(context).isDarkMode
               ? DarkTheme.backgroundColor
               : LightTheme.backgroundColor,
         ),
         body: SingleChildScrollView(
           child: Container(
-            color: MyApp.darkMode
+            color: Provider.of<ThemeProvider>(context).isDarkMode
                 ? DarkTheme.backgroundColor
                 : LightTheme.backgroundColor,
             padding: EdgeInsets.only(
@@ -41,14 +43,15 @@ class _SignupPageState extends State<SignupPage> {
               children: <Widget>[
                 Container(
                   decoration: BoxDecoration(
-                      color: MyApp.darkMode
+                      color: Provider.of<ThemeProvider>(context).isDarkMode
                           ? DarkTheme.backgroundColor
                           : LightTheme.backgroundColor,
                       boxShadow: [
                         BoxShadow(
-                            color: MyApp.darkMode
-                                ? DarkTheme.reverseColor
-                                : LightTheme.reverseColor,
+                            color:
+                                Provider.of<ThemeProvider>(context).isDarkMode
+                                    ? DarkTheme.reverseColor
+                                    : LightTheme.reverseColor,
                             offset: Offset(1, 2.0),
                             blurRadius: 5,
                             spreadRadius: 1)
@@ -80,7 +83,8 @@ class _SignupPageState extends State<SignupPage> {
                           decoration: InputDecoration(
                               labelText: "Name",
                               labelStyle: TextStyle(
-                                color: MyApp.darkMode
+                                color: Provider.of<ThemeProvider>(context)
+                                        .isDarkMode
                                     ? DarkTheme.reverseColor
                                     : LightTheme.reverseColor,
                                 fontWeight: FontWeight.w400,
@@ -97,7 +101,8 @@ class _SignupPageState extends State<SignupPage> {
                           decoration: InputDecoration(
                               labelText: "Email",
                               labelStyle: TextStyle(
-                                color: MyApp.darkMode
+                                color: Provider.of<ThemeProvider>(context)
+                                        .isDarkMode
                                     ? DarkTheme.reverseColor
                                     : LightTheme.reverseColor,
                                 fontWeight: FontWeight.w400,
@@ -115,7 +120,8 @@ class _SignupPageState extends State<SignupPage> {
                           decoration: InputDecoration(
                               labelText: "Password",
                               labelStyle: TextStyle(
-                                color: MyApp.darkMode
+                                color: Provider.of<ThemeProvider>(context)
+                                        .isDarkMode
                                     ? DarkTheme.reverseColor
                                     : LightTheme.reverseColor,
                                 fontWeight: FontWeight.w400,
@@ -127,7 +133,8 @@ class _SignupPageState extends State<SignupPage> {
                         ),
                         Container(
                             decoration: BoxDecoration(
-                                color: MyApp.darkMode
+                                color: Provider.of<ThemeProvider>(context)
+                                        .isDarkMode
                                     ? DarkTheme.primaryColor
                                     : LightTheme.primaryColor,
                                 borderRadius:
@@ -137,7 +144,8 @@ class _SignupPageState extends State<SignupPage> {
                               child: Text(
                                 "Signup",
                                 style: TextStyle(
-                                    color: MyApp.darkMode
+                                    color: Provider.of<ThemeProvider>(context)
+                                            .isDarkMode
                                         ? DarkTheme.backgroundColor
                                         : LightTheme.backgroundColor),
                               ),
@@ -149,7 +157,8 @@ class _SignupPageState extends State<SignupPage> {
                                     _passwordController.text)) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(content: Text("Registered.")));
-                                  Navigator.of(context).pushNamed("/home");
+                                  Navigator.of(context)
+                                      .pushReplacementNamed("/home");
                                 }
                               },
                             ))

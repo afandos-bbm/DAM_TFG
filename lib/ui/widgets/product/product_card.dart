@@ -1,8 +1,10 @@
+import 'package:client_project/domain/services/providers/theme_provider.dart';
 import 'package:client_project/ui/pages/product_page.dart';
 import 'package:client_project/ui/themes/dark_theme.dart';
 import 'package:client_project/ui/themes/light_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:client_project/main.dart';
+import 'package:provider/provider.dart';
 
 class ProductCard extends StatelessWidget {
   final String id;
@@ -28,12 +30,12 @@ class ProductCard extends StatelessWidget {
       clipBehavior: Clip.none,
       width: 170,
       decoration: BoxDecoration(
-          color: MyApp.darkMode
+          color: Provider.of<ThemeProvider>(context).isDarkMode
               ? DarkTheme.backgroundColor
               : LightTheme.backgroundColor,
           boxShadow: [
             BoxShadow(
-                color: MyApp.darkMode
+                color: Provider.of<ThemeProvider>(context).isDarkMode
                     ? DarkTheme.lightColor
                     : LightTheme.lightColor,
                 offset: Offset(0, 0),
@@ -76,7 +78,7 @@ class ProductCard extends StatelessWidget {
             name,
             style: TextStyle(
                 fontSize: 16,
-                color: MyApp.darkMode
+                color: Provider.of<ThemeProvider>(context).isDarkMode
                     ? DarkTheme.reverseColor
                     : LightTheme.reverseColor,
                 fontWeight: FontWeight.w500),
@@ -88,7 +90,7 @@ class ProductCard extends StatelessWidget {
             brand,
             style: TextStyle(
               fontSize: 14,
-              color: MyApp.darkMode
+              color: Provider.of<ThemeProvider>(context).isDarkMode
                   ? DarkTheme.reverseColor
                   : LightTheme.reverseColor,
             ),
@@ -97,7 +99,7 @@ class ProductCard extends StatelessWidget {
             "\$ $price",
             style: TextStyle(
                 fontSize: 14,
-                color: MyApp.darkMode
+                color: Provider.of<ThemeProvider>(context).isDarkMode
                     ? DarkTheme.primaryColor
                     : LightTheme.primaryColor,
                 fontWeight: FontWeight.w700),

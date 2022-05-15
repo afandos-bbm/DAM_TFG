@@ -1,10 +1,12 @@
 import 'package:client_project/domain/services/auth_service.dart';
+import 'package:client_project/domain/services/providers/theme_provider.dart';
 import 'package:client_project/ui/pages/login/register_page.dart';
 import 'package:client_project/ui/themes/dark_theme.dart';
 import 'package:client_project/ui/themes/light_theme.dart';
 import 'package:client_project/ui/widgets/social_button.dart';
 import 'package:flutter/material.dart';
 import 'package:client_project/main.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -19,12 +21,12 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: MyApp.darkMode
+        backgroundColor: Provider.of<ThemeProvider>(context).isDarkMode
             ? DarkTheme.backgroundColor
             : LightTheme.backgroundColor,
         body: SingleChildScrollView(
           child: Container(
-            color: MyApp.darkMode
+            color: Provider.of<ThemeProvider>(context).isDarkMode
                 ? DarkTheme.backgroundColor
                 : LightTheme.backgroundColor,
             padding: EdgeInsets.only(
@@ -37,14 +39,15 @@ class _LoginPageState extends State<LoginPage> {
               children: <Widget>[
                 Container(
                   decoration: BoxDecoration(
-                      color: MyApp.darkMode
+                      color: Provider.of<ThemeProvider>(context).isDarkMode
                           ? DarkTheme.backgroundColor
                           : LightTheme.backgroundColor,
                       boxShadow: [
                         BoxShadow(
-                            color: MyApp.darkMode
-                                ? DarkTheme.lightColor
-                                : LightTheme.lightColor,
+                            color:
+                                Provider.of<ThemeProvider>(context).isDarkMode
+                                    ? DarkTheme.lightColor
+                                    : LightTheme.lightColor,
                             offset: Offset(0, 0),
                             blurRadius: 4,
                             spreadRadius: 2)
@@ -107,7 +110,8 @@ class _LoginPageState extends State<LoginPage> {
                           decoration: InputDecoration(
                               labelText: "Email",
                               labelStyle: TextStyle(
-                                color: MyApp.darkMode
+                                color: Provider.of<ThemeProvider>(context)
+                                        .isDarkMode
                                     ? DarkTheme.lightColor
                                     : LightTheme.lightColor,
                                 fontWeight: FontWeight.w400,
@@ -125,7 +129,8 @@ class _LoginPageState extends State<LoginPage> {
                           decoration: InputDecoration(
                               labelText: "Password",
                               labelStyle: TextStyle(
-                                color: MyApp.darkMode
+                                color: Provider.of<ThemeProvider>(context)
+                                        .isDarkMode
                                     ? DarkTheme.lightColor
                                     : LightTheme.lightColor,
                                 fontWeight: FontWeight.w400,
@@ -143,7 +148,8 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         Container(
                             decoration: BoxDecoration(
-                                color: MyApp.darkMode
+                                color: Provider.of<ThemeProvider>(context)
+                                        .isDarkMode
                                     ? DarkTheme.primaryColor
                                     : LightTheme.primaryColor,
                                 borderRadius:

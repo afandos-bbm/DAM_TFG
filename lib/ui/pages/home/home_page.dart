@@ -1,3 +1,4 @@
+import 'package:client_project/domain/services/providers/theme_provider.dart';
 import 'package:client_project/ui/themes/dark_theme.dart';
 import 'package:client_project/ui/themes/light_theme.dart';
 import 'package:client_project/ui/widgets/category/category_list.dart';
@@ -5,20 +6,20 @@ import 'package:client_project/ui/widgets/product/product_list.dart';
 import 'package:client_project/ui/widgets/search_box.dart';
 import 'package:flutter/material.dart';
 import 'package:client_project/main.dart';
-
+import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MyApp.darkMode
+      backgroundColor: Provider.of<ThemeProvider>(context).isDarkMode
           ? DarkTheme.backgroundColor
           : LightTheme.backgroundColor,
       body: SingleChildScrollView(
         child: Container(
             padding: EdgeInsets.all(20),
             width: double.infinity,
-            color: MyApp.darkMode
+            color: Provider.of<ThemeProvider>(context).isDarkMode
                 ? DarkTheme.backgroundColor
                 : LightTheme.backgroundColor,
             child: Column(

@@ -1,7 +1,9 @@
+import 'package:client_project/domain/services/providers/theme_provider.dart';
 import 'package:client_project/main.dart';
 import 'package:client_project/ui/themes/dark_theme.dart';
 import 'package:client_project/ui/themes/light_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SocialButton extends StatelessWidget {
   final String text;
@@ -22,7 +24,7 @@ class SocialButton extends StatelessWidget {
       height: 60,
       decoration: BoxDecoration(
           border: Border.all(
-              color: MyApp.darkMode
+              color: Provider.of<ThemeProvider>(context).isDarkMode
                   ? DarkTheme.reverseColor
                   : LightTheme.reverseColor,
               width: 0.5),

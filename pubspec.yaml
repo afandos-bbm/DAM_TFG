@@ -20,6 +20,8 @@ dependencies:
   get_it: ^7.2.0
   shared_preferences: ^2.0.15
   shared_preferences_android: ^2.0.12
+  image_picker: ^0.8.5+3
+  firebase_storage: ^10.2.16
 
 dev_dependencies:
   flutter_test:

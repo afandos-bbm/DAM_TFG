@@ -1,7 +1,9 @@
+import 'package:client_project/domain/services/providers/theme_provider.dart';
 import 'package:client_project/main.dart';
 import 'package:client_project/ui/themes/dark_theme.dart';
 import 'package:client_project/ui/themes/light_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SearchBox extends StatelessWidget {
   @override
@@ -12,17 +14,20 @@ class SearchBox extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(
           width: 1,
-          color:
-              MyApp.darkMode ? DarkTheme.primaryColor : LightTheme.primaryColor,
+          color: Provider.of<ThemeProvider>(context).isDarkMode
+              ? DarkTheme.primaryColor
+              : LightTheme.primaryColor,
         ),
-        color: MyApp.darkMode ? DarkTheme.lightColor : LightTheme.lightColor,
+        color: Provider.of<ThemeProvider>(context).isDarkMode
+            ? DarkTheme.lightColor
+            : LightTheme.lightColor,
         borderRadius: BorderRadius.all(Radius.circular(30)),
       ),
       height: 60,
       child: Row(
         children: <Widget>[
           Icon(Icons.search,
-              color: MyApp.darkMode
+              color: Provider.of<ThemeProvider>(context).isDarkMode
                   ? DarkTheme.primaryColor
                   : LightTheme.primaryColor),
           Container(
@@ -35,7 +40,7 @@ class SearchBox extends StatelessWidget {
               ),
               style: TextStyle(
                   fontSize: 20,
-                  color: MyApp.darkMode
+                  color: Provider.of<ThemeProvider>(context).isDarkMode
                       ? DarkTheme.primaryColor
                       : LightTheme.primaryColor),
             ),

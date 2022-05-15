@@ -1,7 +1,9 @@
+import 'package:client_project/domain/services/providers/theme_provider.dart';
 import 'package:client_project/main.dart';
 import 'package:client_project/ui/themes/dark_theme.dart';
 import 'package:client_project/ui/themes/light_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CategoryItem extends StatelessWidget {
   final Image image;
@@ -19,7 +21,7 @@ class CategoryItem extends StatelessWidget {
           color: Colors.white,
           boxShadow: [
             BoxShadow(
-              color: MyApp.darkMode
+              color: Provider.of<ThemeProvider>(context).isDarkMode
                   ? DarkTheme.primaryColor
                   : LightTheme.primaryColor,
               offset: Offset(0, 0),

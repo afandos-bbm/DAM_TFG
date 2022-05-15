@@ -1,5 +1,6 @@
 import 'package:client_project/domain/entities/product.dart';
 import 'package:client_project/domain/services/providers/cart_provider.dart';
+import 'package:client_project/domain/services/providers/theme_provider.dart';
 import 'package:client_project/main.dart';
 import 'package:client_project/ui/themes/dark_theme.dart';
 import 'package:client_project/ui/themes/light_theme.dart';
@@ -73,9 +74,10 @@ class ProductPage extends StatelessWidget {
             ));
           },
           style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(MyApp.darkMode
-                  ? DarkTheme.primaryColor
-                  : LightTheme.primaryColor)),
+              backgroundColor: MaterialStateProperty.all(
+                  Provider.of<ThemeProvider>(context).isDarkMode
+                      ? DarkTheme.primaryColor
+                      : LightTheme.primaryColor)),
           child: Icon(Icons.add_shopping_cart),
         ));
   }
