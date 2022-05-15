@@ -1,4 +1,4 @@
-import 'package:client_project/domain/entities/producto.dart';
+import 'package:client_project/domain/entities/product.dart';
 import 'package:client_project/domain/services/firestore_service.dart';
 import 'package:flutter/material.dart';
 
@@ -11,13 +11,13 @@ class CartProvider with ChangeNotifier {
     });
   }
 
-  List<Producto> _cart;
+  List<Product> _cart;
   double totalPrice = 0;
   bool loading = false;
 
-  List<Producto> get cart => _cart;
+  List<Product> get cart => _cart;
 
-  set cart(List<Producto> cart) {
+  set cart(List<Product> cart) {
     cart.forEach((element) {
       if (element.quantity > 0) {
         totalPrice += element.quantity * element.price;
@@ -27,7 +27,7 @@ class CartProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void addProduct(Producto product) {
+  void addProduct(Product product) {
     int index = _cart.indexWhere((element) => element.id == product.id);
 
     if (index == -1) {
@@ -42,7 +42,7 @@ class CartProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void removeProduct(Producto product, bool removeAll) {
+  void removeProduct(Product product, bool removeAll) {
     if (_cart
         .any((element) => element.id == product.id && element.quantity > 1)) {
       if (removeAll) {

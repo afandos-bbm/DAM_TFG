@@ -17,7 +17,7 @@ void main() async {
   await MyApp.loadJson();
   await di.init();
   GetIt.I<FirebaseAuth>().authStateChanges().listen((user) {
-    if (user != null) {
+    if (user != null && !(GetIt.I.isRegistered<CartProvider>())) {
       di.registerCartProvider();
     } else {
       if (GetIt.I.isRegistered<CartProvider>()) di.unRegisterCartProvider();
@@ -26,13 +26,14 @@ void main() async {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  final User _user = FirebaseAuth.instance.currentUser;
+class MyApp extends StatefulWidget {
   static String marcasJson;
   static String productsJson;
 
   static get darkMode => _darkMode;
-  static bool _darkMode = false;
+  static changeDarkMode() => _darkMode = !_darkMode;
+
+  static bool _darkMode = true;
 
   static Future<void> loadJson() async {
     await wait(3);
@@ -43,6 +44,13 @@ class MyApp extends StatelessWidget {
   static Future wait(int seconds) {
     return new Future.delayed(Duration(seconds: seconds), () => {});
   }
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final User _user = FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {
@@ -58,8 +66,9 @@ class MyApp extends StatelessWidget {
         },
         debugShowCheckedModeBanner: false,
         title: 'La Cueva del Recambio',
-        theme:
-            _darkMode ? DarkTheme.getDarkTheme() : LightTheme.getLightTheme(),
+        theme: MyApp._darkMode
+            ? DarkTheme.getDarkTheme()
+            : LightTheme.getLightTheme(),
         home: DefaultTabController(
           length: 3,
           child: _user == null ? LoginPage() : TabsPage(),

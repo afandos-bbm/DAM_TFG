@@ -1,4 +1,4 @@
-import 'package:client_project/domain/entities/producto.dart';
+import 'package:client_project/domain/entities/product.dart';
 import 'package:client_project/domain/services/providers/cart_provider.dart';
 import 'package:client_project/ui/themes/dark_theme.dart';
 import 'package:client_project/ui/themes/light_theme.dart';
@@ -185,7 +185,7 @@ class _CartPageState extends State<CartPage> {
                                 ),
                                 onPressed: () {
                                   GetIt.I<CartProvider>().removeProduct(
-                                      Producto.productoFromId(
+                                      Product.productFromId(
                                           snapshot.cart[index].id),
                                       true);
                                   //ScaffoldMessenger.of(context).showSnackBar(
@@ -232,5 +232,5 @@ class _CartPageState extends State<CartPage> {
     );
   }
 
-  Future<List<Producto>> getCartFromProvider() async {}
+  Future<List<Product>> getCartFromProvider() async {}
 }

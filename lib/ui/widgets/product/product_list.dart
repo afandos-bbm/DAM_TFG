@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:client_project/domain/entities/producto.dart';
+import 'package:client_project/domain/entities/product.dart';
 import 'package:client_project/main.dart';
 import 'package:client_project/ui/widgets/product/product_card.dart';
 import 'package:flutter/material.dart';
@@ -12,10 +12,10 @@ class ProductList extends StatelessWidget {
   }
 
   List<ProductCard> getProducts() {
-    List<Producto> products = [];
+    List<Product> products = [];
     String jsonString = MyApp.productsJson;
     List<dynamic> jsonResponse = json.decode(jsonString);
-    jsonResponse.forEach((element) => products.add(Producto(
+    jsonResponse.forEach((element) => products.add(Product(
           id: element['id'],
           name: element['nombre'],
           image: element['imagen'],

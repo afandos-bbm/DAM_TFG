@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:client_project/domain/entities/marca.dart';
+import 'package:client_project/domain/entities/category.dart';
 import 'package:client_project/main.dart';
 import 'package:client_project/ui/widgets/category/category_item.dart';
 import 'package:flutter/material.dart';
@@ -28,11 +28,11 @@ class _CategoryListState extends State<CategoryList> {
   }
 
   List<CategoryItem> getMarcas() {
-    List<Marca> marcas = [];
+    List<Category> marcas = [];
     String jsonString = MyApp.marcasJson;
     List<dynamic> jsonResponse = json.decode(jsonString);
     jsonResponse.forEach((element) => marcas
-        .add(Marca(element['nombre'], element['logo'], element['modelos'])));
+        .add(Category(element['nombre'], element['logo'], element['modelos'])));
     List<CategoryItem> categories = [];
     marcas.forEach((element) => categories.add(
         CategoryItem(image: Image.asset(element.image, bundle: rootBundle))));

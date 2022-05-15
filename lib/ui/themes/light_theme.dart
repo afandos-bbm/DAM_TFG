@@ -9,7 +9,13 @@ class LightTheme {
 
   static ThemeData getLightTheme() {
     return ThemeData(
-      brightness: brightness,
-    );
+        brightness: brightness,
+        elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(primaryColor),
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        side: BorderSide(color: Colors.transparent))))));
   }
 }

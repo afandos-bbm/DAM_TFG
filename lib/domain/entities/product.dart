@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:client_project/main.dart';
 
-class Producto {
+class Product {
   final String id;
   String name;
   String image;
@@ -12,7 +12,7 @@ class Producto {
   List<dynamic> variantes;
   int quantity = 1;
 
-  Producto({
+  Product({
     this.id,
     this.name,
     this.image,
@@ -23,7 +23,7 @@ class Producto {
     this.tags,
   });
 
-  Producto.fromJson(Map<String, dynamic> json)
+  Product.fromJson(Map<String, dynamic> json)
       : id = json['id'],
         name = json['nombre'],
         brand = json['marca'],
@@ -44,13 +44,13 @@ class Producto {
         'variantes': variantes,
       };
 
-  static Producto productoFromId(String id, {int quantity = 1}) {
-    Producto product;
+  static Product productFromId(String id, {int quantity = 1}) {
+    Product product;
     String jsonString = MyApp.productsJson;
     List<dynamic> jsonResponse = json.decode(jsonString);
     jsonResponse.forEach((element) {
       if (element['id'] == id) {
-        product = Producto.fromJson(element);
+        product = Product.fromJson(element);
         product.quantity = quantity;
       }
     });
@@ -59,6 +59,6 @@ class Producto {
 
   @override
   String toString() {
-    return 'Producto{id: $id, name: $name, image: $image, brand: $brand, price: $price, description: $description, tags: $tags, variantes: $variantes, quantity: $quantity}';
+    return 'Product{id: $id, name: $name, image: $image, brand: $brand, price: $price, description: $description, tags: $tags, variantes: $variantes, quantity: $quantity}';
   }
 }

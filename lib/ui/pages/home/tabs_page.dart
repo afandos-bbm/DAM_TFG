@@ -39,7 +39,7 @@ class _TabsPageState extends State<TabsPage>
                 icon: Icon(Icons.shopping_cart),
               ),
               Tab(
-                icon: Icon(Icons.perm_identity),
+                icon: Icon(Icons.person),
               ),
             ],
             labelColor: MyApp.darkMode

@@ -1,9 +1,9 @@
-import 'package:client_project/domain/entities/producto.dart';
+import 'package:client_project/domain/entities/product.dart';
 import 'package:client_project/domain/utils/parsers.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-Future<bool> updateCartToFB(List<Producto> cart) async {
+Future<bool> updateCartToFB(List<Product> cart) async {
   User user = FirebaseAuth.instance.currentUser;
 
   if (user != null) {
@@ -17,7 +17,10 @@ Future<bool> updateCartToFB(List<Producto> cart) async {
           await FirebaseFirestore.instance
               .collection('users')
               .doc(user.uid)
-              .update({'ids': FieldValue.delete(), 'quantity': FieldValue.delete()});
+              .update({
+            'ids': FieldValue.delete(),
+            'quantity': FieldValue.delete()
+          });
         }
         return true;
       }
@@ -45,9 +48,9 @@ Future<bool> updateCartToFB(List<Producto> cart) async {
   return false;
 }
 
-Future<List<Producto>> getCartFromFB() async {
+Future<List<Product>> getCartFromFB() async {
   User user = FirebaseAuth.instance.currentUser;
-  List<Producto> cart = List<Producto>.empty(growable: true);
+  List<Product> cart = List<Product>.empty(growable: true);
 
   if (user != null) {
     try {
@@ -82,14 +85,14 @@ Future<List<Producto>> getCartFromFB() async {
         List<int> cartQuantities = parseIntList(data['quantities']);
 
         cartIds.forEach((element) {
-          Producto prod = Producto.productoFromId('$element');
+          Product prod = Product.productFromId('$element');
           cart.add(prod);
         });
         int i = 0;
         cartQuantities.forEach((element) {
           int quantity = int.parse('$element');
           if (quantity >= 1) {
-            Producto prod = Producto.productoFromId('${cart[i].id}');
+            Product prod = Product.productFromId('${cart[i].id}');
             prod.quantity = quantity;
             cart
                 .where((element) => element.id == prod.id)

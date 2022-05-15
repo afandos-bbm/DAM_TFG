@@ -1,4 +1,4 @@
-import 'package:client_project/domain/entities/producto.dart';
+import 'package:client_project/domain/entities/product.dart';
 import 'package:client_project/domain/services/providers/cart_provider.dart';
 import 'package:client_project/main.dart';
 import 'package:client_project/ui/themes/dark_theme.dart';
@@ -66,7 +66,7 @@ class ProductPage extends StatelessWidget {
         floatingActionButton: ElevatedButton(
           onPressed: () {
             final cartProvider = GetIt.I<CartProvider>();
-            Producto producto = Producto.productoFromId(id);
+            Product producto = Product.productFromId(id);
             cartProvider.addProduct(producto);
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text("Added to cart"),
