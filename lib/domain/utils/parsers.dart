@@ -9,3 +9,15 @@ List<int> parseIntList(List<dynamic> data) {
 int parseInt(String id) {
   return int.parse(id);
 }
+
+String parseEmail(String data) {
+  if (data.contains('@') &&
+      data.contains('.') &&
+      data.length > 5 &&
+      data.length < 100 &&
+      data.contains(' ') == false) {
+    return data;
+  } else {
+    return null;
+  }
+}

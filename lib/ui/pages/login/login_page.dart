@@ -1,5 +1,6 @@
 import 'package:client_project/domain/services/auth_service.dart';
 import 'package:client_project/domain/services/providers/theme_provider.dart';
+import 'package:client_project/domain/utils/parsers.dart';
 import 'package:client_project/ui/pages/login/register_page.dart';
 import 'package:client_project/ui/themes/dark_theme.dart';
 import 'package:client_project/ui/themes/light_theme.dart';
@@ -162,7 +163,7 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                               onPressed: () async => await login(
                                       context,
-                                      _emailController.text,
+                                      parseEmail(_emailController.text),
                                       _passwordController.text)
                                   ? Navigator.of(context)
                                       .pushReplacementNamed("/home")

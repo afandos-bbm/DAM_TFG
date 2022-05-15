@@ -1,5 +1,6 @@
 import 'package:client_project/domain/services/auth_service.dart';
 import 'package:client_project/domain/services/providers/theme_provider.dart';
+import 'package:client_project/domain/utils/parsers.dart';
 import 'package:client_project/main.dart';
 import 'package:client_project/ui/themes/dark_theme.dart';
 import 'package:client_project/ui/themes/light_theme.dart';
@@ -153,7 +154,7 @@ class _SignupPageState extends State<SignupPage> {
                                 if (await register(
                                     context,
                                     _nameController.text,
-                                    _emailController.text,
+                                    parseEmail(_emailController.text),
                                     _passwordController.text)) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(content: Text("Registered.")));
