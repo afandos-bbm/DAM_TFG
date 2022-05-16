@@ -18,12 +18,12 @@ void main() async {
   await MyApp.loadJson();
   await di.init();
   GetIt.I<FirebaseAuth>().authStateChanges().listen((user) {
-    if (user.emailVerified)
-      print("Verified");
-    else
-      print("Not verified");
     if (user != null && !(GetIt.I.isRegistered<CartProvider>())) {
       di.registerCartProvider();
+      if (user.emailVerified)
+        print("Verified");
+      else
+        print("Not verified");
     } else {
       if (GetIt.I.isRegistered<CartProvider>()) di.unRegisterCartProvider();
     }
