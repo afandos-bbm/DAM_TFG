@@ -56,8 +56,11 @@ class ProfileWidget extends StatelessWidget {
     }
     return CircleAvatar(
       radius: 50,
-      backgroundColor: Colors.transparent,
-      backgroundImage: Image.network(imagePath).image,
+      backgroundImage: FadeInImage.assetNetwork(
+        placeholder: 'assets/image-placeholder.png',
+        image: imagePath,
+        fit: BoxFit.cover,
+      ).image,
     );
   }
 
