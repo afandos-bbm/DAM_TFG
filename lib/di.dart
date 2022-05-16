@@ -19,8 +19,8 @@ Future<void> init() async {
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   _l.registerSingleton<SharedPreferences>(sharedPreferences);
 
-  bool darkMode = sharedPreferences.getBool('darkMode') ?? false;
-  _l.registerSingleton(ThemeProvider(darkMode));
+  bool isDarkMode = sharedPreferences.getBool('isDarkMode') ?? false;
+  _l.registerSingleton(ThemeProvider(isDarkMode));
 }
 
 Future<void> registerCartProvider() async {

@@ -1,6 +1,8 @@
 import 'package:client_project/ui/themes/dark_theme.dart';
 import 'package:client_project/ui/themes/light_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ThemeProvider extends ChangeNotifier {
   ThemeData _theme;
@@ -9,13 +11,17 @@ class ThemeProvider extends ChangeNotifier {
 
   ThemeProvider(bool darkMode) {
     _isDarkMode = darkMode;
-    changeTheme();
+    _theme =
+        _isDarkMode ? DarkTheme.getDarkTheme() : LightTheme.getLightTheme();
+    GetIt.I<SharedPreferences>().setBool('isDarkMode', _isDarkMode);
+    notifyListeners();
   }
 
   void changeTheme() {
     _isDarkMode = !_isDarkMode;
     _theme =
         _isDarkMode ? DarkTheme.getDarkTheme() : LightTheme.getLightTheme();
+    GetIt.I<SharedPreferences>().setBool('isDarkMode', _isDarkMode);
     notifyListeners();
   }
 
