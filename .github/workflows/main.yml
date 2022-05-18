@@ -23,4 +23,5 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: "build/app/outputs/apk/debug/*"
+          tag: '0.1.1beta'
           token: ${{ secrets.token }}
