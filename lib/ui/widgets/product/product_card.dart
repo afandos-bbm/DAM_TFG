@@ -26,85 +26,74 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      clipBehavior: Clip.none,
-      width: 170,
-      decoration: BoxDecoration(
-          color: Provider.of<ThemeProvider>(context).isDarkMode
-              ? DarkTheme.backgroundColor
-              : LightTheme.backgroundColor,
-          boxShadow: [
-            BoxShadow(
-                color: Provider.of<ThemeProvider>(context).isDarkMode
-                    ? DarkTheme.lightColor
-                    : LightTheme.lightColor,
-                offset: Offset(0, 0),
-                blurRadius: 1,
-                spreadRadius: 1)
-          ]),
-      padding: EdgeInsets.all(10),
-      margin: EdgeInsets.only(right: 12, top: 1, bottom: 1, left: 1),
-      alignment: Alignment.center,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (BuildContext context) => ProductPage(
-                            id: id,
-                            image: image,
-                            title: name,
-                            brand: brand,
-                            description: description,
-                            price: price,
-                            tags: tags,
-                          )));
-            },
-            child: Container(
-              child: Image.asset(
-                image,
-                fit: BoxFit.cover,
+    return Card(
+      child: Container(
+        clipBehavior: Clip.none,
+        width: 170,
+        padding: EdgeInsets.all(10),
+        margin: EdgeInsets.only(right: 12, top: 1, bottom: 1, left: 1),
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => ProductPage(
+                              id: id,
+                              image: image,
+                              title: name,
+                              brand: brand,
+                              description: description,
+                              price: price,
+                              tags: tags,
+                            )));
+              },
+              child: Container(
+                child: Image.asset(
+                  image,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Text(
-            name,
-            style: TextStyle(
-                fontSize: 16,
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              name,
+              style: TextStyle(
+                  fontSize: 16,
+                  color: Provider.of<ThemeProvider>(context).isDarkMode
+                      ? DarkTheme.reverseColor
+                      : LightTheme.reverseColor,
+                  fontWeight: FontWeight.w500),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              brand,
+              style: TextStyle(
+                fontSize: 14,
                 color: Provider.of<ThemeProvider>(context).isDarkMode
                     ? DarkTheme.reverseColor
                     : LightTheme.reverseColor,
-                fontWeight: FontWeight.w500),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Text(
-            brand,
-            style: TextStyle(
-              fontSize: 14,
-              color: Provider.of<ThemeProvider>(context).isDarkMode
-                  ? DarkTheme.reverseColor
-                  : LightTheme.reverseColor,
+              ),
             ),
-          ),
-          Text(
-            "\$ $price",
-            style: TextStyle(
-                fontSize: 14,
-                color: Provider.of<ThemeProvider>(context).isDarkMode
-                    ? DarkTheme.primaryColor
-                    : LightTheme.primaryColor,
-                fontWeight: FontWeight.w700),
-          ),
-        ],
+            Text(
+              "\$ $price",
+              style: TextStyle(
+                  fontSize: 14,
+                  color: Provider.of<ThemeProvider>(context).isDarkMode
+                      ? DarkTheme.primaryColor
+                      : LightTheme.primaryColor,
+                  fontWeight: FontWeight.w700),
+            ),
+          ],
+        ),
       ),
     );
   }

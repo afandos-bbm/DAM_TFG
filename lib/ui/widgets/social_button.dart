@@ -20,29 +20,22 @@ class SocialButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 60,
-      decoration: BoxDecoration(
-          border: Border.all(
-              color: Provider.of<ThemeProvider>(context).isDarkMode
-                  ? DarkTheme.reverseColor
-                  : LightTheme.reverseColor,
-              width: 0.5),
-          borderRadius: BorderRadius.all(
-            Radius.circular(4),
-          )),
-      child: TextButton(
-        child: Row(
-          children: <Widget>[
-            Container(
-              height: heightImage,
-              width: 100,
-              child: image,
-            ),
-            Text(text)
-          ],
+    return Card(
+      child: Container(
+        height: 60,
+        child: TextButton(
+          child: Row(
+            children: <Widget>[
+              Container(
+                height: heightImage,
+                width: 100,
+                child: image,
+              ),
+              Text(text)
+            ],
+          ),
+          onPressed: onPress,
         ),
-        onPressed: onPress,
       ),
     );
   }

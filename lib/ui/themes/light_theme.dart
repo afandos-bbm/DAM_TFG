@@ -10,12 +10,25 @@ class LightTheme {
   static ThemeData getLightTheme() {
     return ThemeData(
         brightness: brightness,
+        cardTheme: CardTheme().copyWith(
+          elevation: 6,
+          shadowColor: Color(Colors.black45.value),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+            side: BorderSide(
+              color: Colors.black12,
+            ),
+          ),
+        ),
+        listTileTheme: ListTileThemeData().copyWith(
+          dense: true,
+        ),
         elevatedButtonTheme: ElevatedButtonThemeData(
             style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(primaryColor),
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
-                        side: BorderSide(color: Colors.transparent))))));
+                        side: BorderSide(color: Colors.black12))))));
   }
 }

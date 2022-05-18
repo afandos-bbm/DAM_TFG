@@ -41,14 +41,13 @@ class _UserPageState extends State<UserPage> {
           buildName(user),
           const SizedBox(height: 24),
           Center(child: buildSetCar()),
-          const SizedBox(height: 24),
           Divider(
             thickness: 2,
-            height: 1,
-            indent: 10.0,
-            endIndent: 10.0,
+            height: 50,
+            indent: 25.0,
+            endIndent: 25.0,
+            color: Colors.black26,
           ),
-          const SizedBox(height: 48),
           buildConfig(user),
         ],
       ),
@@ -75,16 +74,15 @@ class _UserPageState extends State<UserPage> {
       );
 
   Widget buildConfig(User user) => Container(
-      padding: EdgeInsets.symmetric(horizontal: 48),
+      padding: EdgeInsets.symmetric(horizontal: 30),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        const SizedBox(height: 16),
         Card(
           child: ListTile(
             leading: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Icon(Icons.settings),
             ),
-            title: Text('Settings (Soon)'),
+            title: Text('Settings'),
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
@@ -103,11 +101,11 @@ class _UserPageState extends State<UserPage> {
             ),
             title: Text('Notifications (Soon)'),
             onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => NotificationsPage(),
-                ),
-              );
+              // Navigator.of(context).push(
+              //   MaterialPageRoute(
+              //     builder: (context) => NotificationsPage(),
+              //   ),
+              // );
             },
           ),
         ),
@@ -120,27 +118,29 @@ class _UserPageState extends State<UserPage> {
             ),
             title: Text('About (Soon)'),
             onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => AboutPage(),
-                ),
-              );
+              // Navigator.of(context).push(
+              //   MaterialPageRoute(
+              //     builder: (context) => AboutPage(),
+              //   ),
+              // );
             },
           ),
         ),
         const SizedBox(height: 16),
-        Center(
-          child: ElevatedButton(
-            style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(
-                    Provider.of<ThemeProvider>(context).isDarkMode
-                        ? Color(Colors.red.value)
-                        : Color(Colors.red.value))),
-            onPressed: () async {
+        Card(
+          color: Colors.redAccent,
+          child: ListTile(
+            onTap: () async {
               await FirebaseAuth.instance.signOut().then((value) =>
                   Navigator.of(context).pushReplacementNamed("/login"));
             },
-            child: Text("Sign Out"),
+            leading: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Icon(Icons.exit_to_app),
+            ),
+            textColor: Colors.white,
+            iconColor: Colors.white,
+            title: Text("Sign Out"),
           ),
         ),
       ]));

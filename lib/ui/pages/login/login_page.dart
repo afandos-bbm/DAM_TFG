@@ -38,139 +38,178 @@ class _LoginPageState extends State<LoginPage> {
             ),
             child: Column(
               children: <Widget>[
-                Container(
-                  decoration: BoxDecoration(
+                Card(
+                  elevation: 6,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                    side: BorderSide(
+                      color: Provider.of<ThemeProvider>(context).isDarkMode
+                          ? DarkTheme.primaryColor
+                          : LightTheme.primaryColor,
+                    ),
+                  ),
+                  child: Container(
+                    decoration: BoxDecoration(
                       color: Provider.of<ThemeProvider>(context).isDarkMode
                           ? DarkTheme.backgroundColor
                           : LightTheme.backgroundColor,
-                      boxShadow: [
-                        BoxShadow(
-                            color:
-                                Provider.of<ThemeProvider>(context).isDarkMode
-                                    ? DarkTheme.lightColor
-                                    : LightTheme.lightColor,
-                            offset: Offset(0, 0),
-                            blurRadius: 4,
-                            spreadRadius: 2)
-                      ]),
-                  height: 400,
-                  padding: EdgeInsets.only(
-                    top: 38,
-                    left: 20,
-                    right: 20,
-                    bottom: 20,
-                  ),
-                  width: MediaQuery.of(context).size.width,
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Column(
-                              children: <Widget>[
-                                Text(
-                                  "Welcome,",
-                                  style: TextStyle(
-                                      fontSize: 30.0,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                    left: 10,
-                                  ),
-                                  child: Text(
-                                    "Signin in to continue",
+                    ),
+                    height: 400,
+                    padding: EdgeInsets.only(
+                      top: 38,
+                      left: 20,
+                      right: 20,
+                      bottom: 20,
+                    ),
+                    width: MediaQuery.of(context).size.width,
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Column(
+                                children: <Widget>[
+                                  Text(
+                                    "Welcome,",
                                     style: TextStyle(
-                                      fontSize: 13.0,
+                                        fontSize: 30.0,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                      left: 10,
+                                    ),
+                                    child: Text(
+                                      "Signin in to continue",
+                                      style: TextStyle(
+                                        fontSize: 13.0,
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            TextButton(
-                              child: Text("Sign Up"),
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        fullscreenDialog: true,
-                                        builder: (context) => SignupPage()));
-                              },
-                            )
-                          ],
-                        ),
-                        SizedBox(
-                          height: 40,
-                        ),
-                        TextFormField(
-                          controller: _emailController,
-                          autofocus: false,
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: InputDecoration(
-                              labelText: "Email",
-                              labelStyle: TextStyle(
-                                color: Provider.of<ThemeProvider>(context)
-                                        .isDarkMode
-                                    ? DarkTheme.lightColor
-                                    : LightTheme.lightColor,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 16,
-                              )),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        TextFormField(
-                          controller: _passwordController,
-                          autofocus: false,
-                          obscureText: true,
-                          keyboardType: TextInputType.text,
-                          decoration: InputDecoration(
-                              labelText: "Password",
-                              labelStyle: TextStyle(
-                                color: Provider.of<ThemeProvider>(context)
-                                        .isDarkMode
-                                    ? DarkTheme.lightColor
-                                    : LightTheme.lightColor,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 16,
-                              )),
-                        ),
-                        Container(
-                            alignment: Alignment.centerRight,
-                            child: TextButton(
-                              child: Text("Forgot your password?"),
-                              onPressed: () {},
-                            )),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Container(
-                            decoration: BoxDecoration(
-                                color: Provider.of<ThemeProvider>(context)
-                                        .isDarkMode
-                                    ? DarkTheme.primaryColor
-                                    : LightTheme.primaryColor,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(4))),
-                            width: MediaQuery.of(context).size.width,
-                            child: TextButton(
-                              child: Text(
-                                "Login",
-                                style: TextStyle(color: Colors.white),
+                                ],
                               ),
-                              onPressed: () async => await login(
-                                      context,
-                                      parseEmail(_emailController.text),
-                                      _passwordController.text)
-                                  ? Navigator.of(context)
-                                      .pushReplacementNamed("/home")
-                                  : ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(content: Text("Login failed"))),
-                            ))
-                      ]),
+                              Align(
+                                alignment: Alignment.topRight,
+                                child: Column(
+                                  children: <Widget>[
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(right: 15.0),
+                                      child: Text("Not a member?"),
+                                    ),
+                                    ElevatedButton(
+                                      style: Theme.of(context)
+                                          .elevatedButtonTheme
+                                          .style
+                                          .copyWith(
+                                            backgroundColor:
+                                                MaterialStateProperty.all(
+                                                    Provider.of<ThemeProvider>(
+                                                                context)
+                                                            .isDarkMode
+                                                        ? DarkTheme
+                                                            .backgroundColor
+                                                        : LightTheme
+                                                            .backgroundColor),
+                                          ),
+                                      child: Text(
+                                        "Sign Up",
+                                        style: TextStyle(
+                                          color: Provider.of<ThemeProvider>(
+                                                      context)
+                                                  .isDarkMode
+                                              ? DarkTheme.reverseColor
+                                              : LightTheme.reverseColor,
+                                        ),
+                                      ),
+                                      onPressed: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                fullscreenDialog: true,
+                                                builder: (context) =>
+                                                    SignupPage()));
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                          SizedBox(
+                            height: 40,
+                          ),
+                          TextFormField(
+                            controller: _emailController,
+                            autofocus: false,
+                            keyboardType: TextInputType.emailAddress,
+                            decoration: InputDecoration(
+                                labelText: "Email",
+                                labelStyle: TextStyle(
+                                  color: Provider.of<ThemeProvider>(context)
+                                          .isDarkMode
+                                      ? DarkTheme.lightColor
+                                      : LightTheme.lightColor,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 16,
+                                )),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          TextFormField(
+                            controller: _passwordController,
+                            autofocus: false,
+                            obscureText: true,
+                            keyboardType: TextInputType.text,
+                            decoration: InputDecoration(
+                                labelText: "Password",
+                                labelStyle: TextStyle(
+                                  color: Provider.of<ThemeProvider>(context)
+                                          .isDarkMode
+                                      ? DarkTheme.lightColor
+                                      : LightTheme.lightColor,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 16,
+                                )),
+                          ),
+                          Container(
+                              alignment: Alignment.centerRight,
+                              child: TextButton(
+                                child: Text("Forgot your password?"),
+                                onPressed: () {},
+                              )),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                              decoration: BoxDecoration(
+                                  color: Provider.of<ThemeProvider>(context)
+                                          .isDarkMode
+                                      ? DarkTheme.primaryColor
+                                      : LightTheme.primaryColor,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(4))),
+                              width: MediaQuery.of(context).size.width,
+                              child: TextButton(
+                                child: Text(
+                                  "Login",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                onPressed: () async => await login(
+                                        context,
+                                        parseEmail(_emailController.text),
+                                        _passwordController.text)
+                                    ? Navigator.of(context)
+                                        .pushReplacementNamed("/home")
+                                    : ScaffoldMessenger.of(context)
+                                        .showSnackBar(SnackBar(
+                                            content: Text("Login failed"))),
+                              ))
+                        ]),
+                  ),
                 ),
                 Container(
                   padding: EdgeInsets.only(top: 20, bottom: 15),

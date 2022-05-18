@@ -5,7 +5,6 @@ import 'package:client_project/ui/widgets/category/category_list.dart';
 import 'package:client_project/ui/widgets/product/product_list.dart';
 import 'package:client_project/ui/widgets/search_box.dart';
 import 'package:flutter/material.dart';
-import 'package:client_project/main.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
