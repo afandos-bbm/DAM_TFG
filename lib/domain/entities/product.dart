@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:client_project/main.dart';
+import 'package:cuevaDelRecambio/main.dart';
 
 class Product {
   final String id;

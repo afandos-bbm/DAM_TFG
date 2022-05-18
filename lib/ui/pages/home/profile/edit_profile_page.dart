@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:client_project/domain/utils/parsers.dart';
+import 'package:cuevaDelRecambio/domain/utils/parsers.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';

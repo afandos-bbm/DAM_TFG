@@ -1,4 +1,4 @@
-import 'package:client_project/domain/services/providers/theme_provider.dart';
+import 'package:cuevaDelRecambio/domain/services/providers/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

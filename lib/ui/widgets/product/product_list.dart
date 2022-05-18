@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:client_project/domain/entities/product.dart';
-import 'package:client_project/main.dart';
-import 'package:client_project/ui/widgets/product/product_card.dart';
+import 'package:cuevaDelRecambio/domain/entities/product.dart';
+import 'package:cuevaDelRecambio/main.dart';
+import 'package:cuevaDelRecambio/ui/widgets/product/product_card.dart';
 import 'package:flutter/material.dart';
 
 class ProductList extends StatelessWidget {

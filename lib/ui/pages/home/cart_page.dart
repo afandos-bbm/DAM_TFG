@@ -1,10 +1,10 @@
-import 'package:client_project/domain/entities/product.dart';
-import 'package:client_project/domain/services/providers/cart_provider.dart';
-import 'package:client_project/domain/services/providers/theme_provider.dart';
-import 'package:client_project/ui/themes/dark_theme.dart';
-import 'package:client_project/ui/themes/light_theme.dart';
+import 'package:cuevaDelRecambio/domain/entities/product.dart';
+import 'package:cuevaDelRecambio/domain/services/providers/cart_provider.dart';
+import 'package:cuevaDelRecambio/domain/services/providers/theme_provider.dart';
+import 'package:cuevaDelRecambio/ui/themes/dark_theme.dart';
+import 'package:cuevaDelRecambio/ui/themes/light_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:client_project/main.dart';
+import 'package:cuevaDelRecambio/main.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 

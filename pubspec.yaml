@@ -1,7 +1,7 @@
-name: client_project
+name: cuevaDelRecambio
 description: A simple Shop.
 
-version: 1.0.0+1
+version: 0.0.1+1
 
 environment:
   sdk: ">=2.1.0 <3.0.0"

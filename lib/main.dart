@@ -1,9 +1,9 @@
-import 'package:client_project/domain/services/providers/cart_provider.dart';
-import 'package:client_project/domain/services/providers/theme_provider.dart';
-import 'package:client_project/ui/pages/home/tabs_page.dart';
-import 'package:client_project/ui/pages/login/login_page.dart';
-import 'package:client_project/ui/themes/dark_theme.dart';
-import 'package:client_project/ui/themes/light_theme.dart';
+import 'package:cuevaDelRecambio/domain/services/providers/cart_provider.dart';
+import 'package:cuevaDelRecambio/domain/services/providers/theme_provider.dart';
+import 'package:cuevaDelRecambio/ui/pages/home/tabs_page.dart';
+import 'package:cuevaDelRecambio/ui/pages/login/login_page.dart';
+import 'package:cuevaDelRecambio/ui/themes/dark_theme.dart';
+import 'package:cuevaDelRecambio/ui/themes/light_theme.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';

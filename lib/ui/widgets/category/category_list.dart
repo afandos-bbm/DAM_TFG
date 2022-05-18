@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'package:client_project/domain/entities/category.dart';
-import 'package:client_project/main.dart';
-import 'package:client_project/ui/widgets/category/category_item.dart';
+import 'package:cuevaDelRecambio/domain/entities/category.dart';
+import 'package:cuevaDelRecambio/main.dart';
+import 'package:cuevaDelRecambio/ui/widgets/category/category_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 

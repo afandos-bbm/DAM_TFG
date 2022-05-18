@@ -1,5 +1,5 @@
-import 'package:client_project/domain/entities/product.dart';
-import 'package:client_project/domain/utils/parsers.dart';
+import 'package:cuevaDelRecambio/domain/entities/product.dart';
+import 'package:cuevaDelRecambio/domain/utils/parsers.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 

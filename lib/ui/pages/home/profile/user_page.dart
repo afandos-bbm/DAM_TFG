@@ -1,10 +1,10 @@
-import 'package:client_project/domain/services/providers/theme_provider.dart';
-import 'package:client_project/main.dart';
-import 'package:client_project/ui/pages/home/profile/about_page.dart';
-import 'package:client_project/ui/pages/home/profile/edit_profile_page.dart';
-import 'package:client_project/ui/pages/home/profile/notifications_page.dart';
-import 'package:client_project/ui/pages/home/profile/settings_page.dart';
-import 'package:client_project/ui/widgets/profile/editable_avatar.dart';
+import 'package:cuevaDelRecambio/domain/services/providers/theme_provider.dart';
+import 'package:cuevaDelRecambio/main.dart';
+import 'package:cuevaDelRecambio/ui/pages/home/profile/about_page.dart';
+import 'package:cuevaDelRecambio/ui/pages/home/profile/edit_profile_page.dart';
+import 'package:cuevaDelRecambio/ui/pages/home/profile/notifications_page.dart';
+import 'package:cuevaDelRecambio/ui/pages/home/profile/settings_page.dart';
+import 'package:cuevaDelRecambio/ui/widgets/profile/editable_avatar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';

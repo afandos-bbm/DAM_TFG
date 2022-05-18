@@ -1,5 +1,5 @@
-import 'package:client_project/ui/themes/dark_theme.dart';
-import 'package:client_project/ui/themes/light_theme.dart';
+import 'package:cuevaDelRecambio/ui/themes/dark_theme.dart';
+import 'package:cuevaDelRecambio/ui/themes/light_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';

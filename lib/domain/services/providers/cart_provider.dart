@@ -1,5 +1,5 @@
-import 'package:client_project/domain/entities/product.dart';
-import 'package:client_project/domain/services/firestore_service.dart';
+import 'package:cuevaDelRecambio/domain/entities/product.dart';
+import 'package:cuevaDelRecambio/domain/services/firestore_service.dart';
 import 'package:flutter/material.dart';
 
 class CartProvider with ChangeNotifier {

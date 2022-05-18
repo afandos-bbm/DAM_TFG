@@ -1,6 +1,6 @@
-import 'package:client_project/domain/entities/product.dart';
-import 'package:client_project/domain/services/firestore_service.dart';
-import 'package:client_project/domain/services/providers/theme_provider.dart';
+import 'package:cuevaDelRecambio/domain/entities/product.dart';
+import 'package:cuevaDelRecambio/domain/services/firestore_service.dart';
+import 'package:cuevaDelRecambio/domain/services/providers/theme_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
