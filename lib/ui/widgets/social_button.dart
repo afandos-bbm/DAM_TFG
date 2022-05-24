@@ -1,9 +1,4 @@
-import 'package:cuevaDelRecambio/domain/services/providers/theme_provider.dart';
-import 'package:cuevaDelRecambio/main.dart';
-import 'package:cuevaDelRecambio/ui/themes/dark_theme.dart';
-import 'package:cuevaDelRecambio/ui/themes/light_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class SocialButton extends StatelessWidget {
   final String text;
