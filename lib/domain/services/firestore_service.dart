@@ -19,7 +19,7 @@ Future<bool> updateCartToFB(List<Product> cart) async {
               .doc(user.uid)
               .update({
             'ids': FieldValue.delete(),
-            'quantity': FieldValue.delete()
+            'quantities': FieldValue.delete()
           });
         }
         return true;
