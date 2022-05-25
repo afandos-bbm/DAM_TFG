@@ -1,7 +1,7 @@
 import 'package:cuevaDelRecambio/domain/services/auth_service.dart';
 import 'package:cuevaDelRecambio/domain/services/providers/theme_provider.dart';
 import 'package:cuevaDelRecambio/domain/utils/parsers.dart';
-import 'package:cuevaDelRecambio/ui/pages/login/register_page.dart';
+import 'package:cuevaDelRecambio/ui/pages/auth/register_page.dart';
 import 'package:cuevaDelRecambio/ui/themes/dark_theme.dart';
 import 'package:cuevaDelRecambio/ui/themes/light_theme.dart';
 import 'package:cuevaDelRecambio/ui/widgets/social_button.dart';

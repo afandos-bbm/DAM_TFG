@@ -33,8 +33,29 @@ class ProductPage extends StatelessWidget {
                 (BuildContext context, bool innerBoxIsScrolled) {
               return [
                 SliverAppBar(
-                  backgroundColor: Colors.white.withOpacity(0),
-                  elevation: 0.0,
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                  leading: Padding(
+                    padding: const EdgeInsets.only(left: 10, top: 10),
+                    child: Card(
+                      elevation: 6,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50),
+                        side: BorderSide(color: Colors.transparent, width: 2),
+                      ),
+                      child: IconButton(
+                        icon: Icon(
+                          Icons.arrow_back,
+                          color: GetIt.I.get<ThemeProvider>().isDarkMode
+                              ? Colors.white
+                              : Colors.black,
+                        ),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                      ),
+                    ),
+                  ),
                   expandedHeight: 500,
                   floating: false,
                   pinned: true,

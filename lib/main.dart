@@ -1,7 +1,7 @@
 import 'package:cuevaDelRecambio/domain/services/providers/cart_provider.dart';
 import 'package:cuevaDelRecambio/domain/services/providers/theme_provider.dart';
 import 'package:cuevaDelRecambio/ui/pages/home/tabs_page.dart';
-import 'package:cuevaDelRecambio/ui/pages/login/login_page.dart';
+import 'package:cuevaDelRecambio/ui/pages/auth/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
