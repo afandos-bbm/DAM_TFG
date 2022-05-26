@@ -1,3 +1,6 @@
+# That code is a GitHub Actions workflow that builds and deploy a
+# new build every time we make a commit into main branch.
+
 on:
   push:
     branches:
@@ -19,11 +22,9 @@ jobs:
         with:
           flutter-version: '3.0.0'
       - run: flutter pub get
-      # - run: flutter test
       - run: flutter build apk --debug --split-per-abi
       - name: "Push to releases"
         uses: ncipollo/release-action@v1
         with:
           artifacts: "build/app/outputs/apk/debug/*"
-          tag: '0.1.1beta'
           token: ${{ secrets.token }}
