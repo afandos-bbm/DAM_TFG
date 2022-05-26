@@ -1,3 +1,7 @@
+// Parsers file for the domain package, 
+// this file will be used to parse the json files
+// and convert them to the domain entities.
+
 List<int> parseIntList(List<dynamic> data) {
   List<int> parsed = List<int>.empty(growable: true);
   data.forEach((element) {

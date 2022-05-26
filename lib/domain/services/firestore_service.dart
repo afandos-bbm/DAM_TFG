@@ -3,6 +3,8 @@ import 'package:cuevaDelRecambio/domain/utils/parsers.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+// This static method sends the last version of the cart to the server.
+// It is called when the user modifies the cart.
 Future<bool> updateCartToFB(List<Product> cart) async {
   User user = FirebaseAuth.instance.currentUser;
 
@@ -48,6 +50,8 @@ Future<bool> updateCartToFB(List<Product> cart) async {
   return false;
 }
 
+// This static method returns the cart from the server.
+// It is called when the user opens the app.
 Future<List<Product>> getCartFromFB() async {
   User user = FirebaseAuth.instance.currentUser;
   List<Product> cart = List<Product>.empty(growable: true);

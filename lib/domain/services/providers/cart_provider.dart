@@ -2,6 +2,11 @@ import 'package:cuevaDelRecambio/domain/entities/product.dart';
 import 'package:cuevaDelRecambio/domain/services/firestore_service.dart';
 import 'package:flutter/material.dart';
 
+// This class manages the state of auth and the current user.
+// It is a singleton class. It is used to get the current user,
+// change the user and know if user is logged in or not.
+// The ChangeNotifier is used to notify the widgets.
+// The widgets will be repainted.
 class CartProvider with ChangeNotifier {
   CartProvider(this._cart) {
     _cart.forEach((element) {

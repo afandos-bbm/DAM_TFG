@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+// This is the theme for the light theme. Defines the colors and the styles.
+// You can change the predefined theme of a Widget here.
 class LightTheme {
   static const brightness = Brightness.light;
   static const primaryColor = const Color.fromARGB(255, 207, 60, 60);

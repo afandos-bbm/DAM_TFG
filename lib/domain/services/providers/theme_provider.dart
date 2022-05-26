@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+// This class manages the theme of the app.
+// It is a singleton class. It is used to get the current theme and
+// change the theme. The ChangeNotifier is used to notify the widgets
+// that the theme has changed. The widgets will be repainted.
 class ThemeProvider extends ChangeNotifier {
   ThemeData _theme;
   bool _isDarkMode;

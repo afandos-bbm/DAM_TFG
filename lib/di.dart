@@ -9,6 +9,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'domain/services/providers/cart_provider.dart';
 
+// di.dart file, this is the file that will be imported in the 
+// main.dart file and will be used to inject the dependencies.
 GetIt _l = GetIt.instance;
 
 Future<void> init() async {

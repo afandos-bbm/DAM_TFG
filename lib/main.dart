@@ -10,6 +10,8 @@ import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 import 'di.dart' as di;
 
+// The Main method is the entry point for all our Flutter apps.
+// Its job is to load al the prerequisites for our app and then run the app.
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -18,10 +20,6 @@ void main() async {
   GetIt.I<FirebaseAuth>().authStateChanges().listen((user) {
     if (user != null && !(GetIt.I.isRegistered<CartProvider>())) {
       di.registerCartProvider();
-      if (user.emailVerified)
-        print("Verified");
-      else
-        print("Not verified");
     } else {
       if (GetIt.I.isRegistered<CartProvider>()) di.unRegisterCartProvider();
     }

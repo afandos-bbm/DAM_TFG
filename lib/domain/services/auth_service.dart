@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+// This static method logs the user with the given email and password.
+// It returns a Future that resolves to the FirebaseUser if the login is successful.
+// The method notifies the listeners of FirebaseAuth.
+// The listeners make the UI update.
 Future<bool> login(BuildContext context, String email, String password) async {
   try {
     FirebaseAuth.instance
@@ -20,6 +24,10 @@ Future<bool> login(BuildContext context, String email, String password) async {
   }
 }
 
+// This static method logs the user with Google.
+// It returns a Future that resolves to the FirebaseUser if the login is successful.
+// The method notifies the listeners of FirebaseAuth.
+// The listeners make the UI update.
 Future<bool> loginWithGoogle(BuildContext context) async {
   try {
     FirebaseAuth auth = FirebaseAuth.instance;
@@ -67,7 +75,10 @@ Future<bool> loginWithGoogle(BuildContext context) async {
   }
 }
 
-// Implement login with facebook
+// This static method logs the user with Facebook.
+// It returns a Future that resolves to the FirebaseUser if the login is successful.
+// The method notifies the listeners of FirebaseAuth.
+// The listeners make the UI update.
 Future<bool> loginWithFacebook(BuildContext context) async {
   try {
     FirebaseAuth auth = FirebaseAuth.instance;
@@ -108,6 +119,10 @@ Future<bool> loginWithFacebook(BuildContext context) async {
   return false;
 }
 
+// This static method registers the user with the given name, email and password.
+// It returns a Future that resolves to the FirebaseUser if the registration is successful.
+// The method notifies the listeners of FirebaseAuth.
+// The listeners make the UI update.
 Future<bool> register(
     BuildContext context, String name, String email, String password) async {
   try {

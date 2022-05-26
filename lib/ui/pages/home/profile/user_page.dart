@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
+// This widget builds the user profile page.
 class UserPage extends StatefulWidget {
   UserPage({Key key}) : super(key: key);
 

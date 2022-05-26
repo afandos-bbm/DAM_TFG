@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:cuevaDelRecambio/main.dart';
 
+// Is the most important entity of the application,
+// it will be used to store the products of the application.
 class Product {
   final String id;
   String name;
@@ -44,6 +46,7 @@ class Product {
         'variantes': variantes,
       };
 
+  // This method will be used to search products by id into the json file.
   static Product productFromId(String id, {int quantity = 1}) {
     Product product;
     String jsonString = MyApp.productsJson;
@@ -55,10 +58,5 @@ class Product {
       }
     });
     return product;
-  }
-
-  @override
-  String toString() {
-    return 'Product{id: $id, name: $name, image: $image, brand: $brand, price: $price, description: $description, tags: $tags, variantes: $variantes, quantity: $quantity}';
   }
 }
