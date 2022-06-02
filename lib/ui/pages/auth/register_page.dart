@@ -27,6 +27,11 @@ class _SignupPageState extends State<SignupPage> {
           backgroundColor: Provider.of<ThemeProvider>(context).isDarkMode
               ? DarkTheme.backgroundColor
               : LightTheme.backgroundColor,
+          iconTheme: IconThemeData(
+            color: Provider.of<ThemeProvider>(context).isDarkMode
+                ? DarkTheme.reverseColor
+                : LightTheme.reverseColor,
+          ),
         ),
         body: SingleChildScrollView(
           child: Container(
