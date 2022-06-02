@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:get_it/get_it.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 // This static method logs the user with the given email and password.
@@ -10,7 +11,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 // The listeners make the UI update.
 Future<bool> login(BuildContext context, String email, String password) async {
   try {
-    FirebaseAuth.instance
+    GetIt.I<FirebaseAuth>()
         .signInWithEmailAndPassword(email: email, password: password);
 
     return true;
@@ -21,6 +22,9 @@ Future<bool> login(BuildContext context, String email, String password) async {
     else if (e.code == 'email-already-in-use')
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text("That email is in use yet.")));
+    else
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text("An error occurred.")));
     return false;
   }
 }
@@ -97,7 +101,6 @@ Future<bool> loginWithFacebook(BuildContext context) async {
     FirebaseAuth auth = FirebaseAuth.instance;
 
     FacebookAuth instance = FacebookAuth.instance;
-
     final LoginResult result = await instance.login();
 
     if (result.status == LoginStatus.success) {

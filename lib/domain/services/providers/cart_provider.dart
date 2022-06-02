@@ -1,5 +1,6 @@
 import 'package:cuevaDelRecambio/domain/entities/product.dart';
 import 'package:cuevaDelRecambio/domain/services/firestore_service.dart';
+import 'package:cuevaDelRecambio/domain/utils/parsers.dart';
 import 'package:flutter/material.dart';
 
 // This class manages the state of auth and the current user.
@@ -58,7 +59,7 @@ class CartProvider with ChangeNotifier {
           }
         });
         _cart.removeWhere((element) => element.id == product.id);
-        totalPrice -= quantity * product.price;
+        totalPrice = 0;
       } else {
         _cart.forEach((element) {
           if (element.id == product.id) {
@@ -66,12 +67,14 @@ class CartProvider with ChangeNotifier {
           }
         });
         totalPrice -= product.price;
+        totalPrice = parsePrice(totalPrice);
       }
     } else {
       _cart.removeWhere((element) {
         return element.id == product.id;
       });
       totalPrice -= product.price;
+      totalPrice = parsePrice(totalPrice);
     }
     updateCartToFB(_cart);
     notifyListeners();

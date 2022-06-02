@@ -1,4 +1,4 @@
-// Parsers file for the domain package, 
+// Parsers file for the domain package,
 // this file will be used to parse the json files
 // and convert them to the domain entities.
 
@@ -23,5 +23,16 @@ String parseEmail(String data) {
     return data;
   } else {
     return null;
+  }
+}
+
+double parsePrice(double data) {
+  if (data.toString().contains('.') &&
+      data.toString().length > data.toString().indexOf('.') + 3) {
+    double price = double.parse(
+        data.toString().substring(0, data.toString().indexOf('.') + 3));
+    return price;
+  } else {
+    return data;
   }
 }
