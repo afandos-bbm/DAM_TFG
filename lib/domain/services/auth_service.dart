@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -31,7 +32,6 @@ Future<bool> login(BuildContext context, String email, String password) async {
 Future<bool> loginWithGoogle(BuildContext context) async {
   try {
     FirebaseAuth auth = FirebaseAuth.instance;
-
     final GoogleSignInAccount googleSignInAccount =
         await GoogleSignIn().signIn();
 
@@ -71,6 +71,19 @@ Future<bool> loginWithGoogle(BuildContext context) async {
     else if (e.code == 'invalid-credential')
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text("Invalid email or password.")));
+    return false;
+  } on PlatformException catch (e) {
+    if (e.code == 'sign_in_cancelled')
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text("Sign in cancelled.")));
+    else if (e.code == 'sign_in_failed') {
+      print(e);
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text("Sign in failed.")));
+    } else {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text("An error occurred.")));
+    }
     return false;
   }
 }
