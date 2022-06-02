@@ -1,19 +1,28 @@
 [{
-        "id" : "1",
-        "nombre": "test",
-        "imagen": "assets/abarth.png",
-        "marca": "abarth",
-        "precio": 1.00,
-        "descripcion": "descripcion de prueba abarth", 
-        "tags": ["abarth", "test"]
+        "id": "1",
+        "nombre": "HARDRACE KITS DE BARRA DE CORBATA DURA CIVIC EK – SUSPENSION",
+        "imagen": "assets/test1productos.jpg",
+        "marca": "Honda",
+        "precio": 52.04,
+        "descripcion": "VEHÍCULO: HONDA//CIVIC//97-00",
+        "tags": ["honda", "ek", "suspension", "barra", "corbata", "dura", "civic"]
     },
     {
-        "id" : "2",
-        "nombre": "test23",
-        "imagen": "assets/alfaromeo.png",
-        "marca": "BMW",
-        "precio": 23.00,
-        "descripcion": "descripcion de test alfaromeo",
-        "tags": ["BMW", "test"]
+        "id": "3",
+        "nombre": "SRS Exhaust Systems Sección intermedia de acero inoxidable (Civic 01-05 2/4dr)",
+        "imagen": "assets/test3productos.jpg",
+        "marca": "SRS Exhaust Systems",
+        "precio": 199.00,
+        "descripcion": "VEHÍCULO: HONDA//CIVIC//01-05",
+        "tags": ["Honda", "Civic", "01-05", "2/4dr", "SRSExhaustSystems"]
+    },
+    {
+        "id": "2",
+        "nombre": "JAPAN RACING JR Wheels JR3 18×8 ET35 5×100/120 Bronce",
+        "imagen": "assets/test2productos.jpg",
+        "marca": "Japan Racing",
+        "precio": 215.00,
+        "descripcion": "",
+        "tags": ["JapanRacing", "JR3", "18×8", "ET35", "5×100/120", "Bronce"]
     }
 ]
