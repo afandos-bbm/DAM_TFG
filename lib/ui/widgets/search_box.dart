@@ -19,7 +19,6 @@ class SearchBox extends StatelessWidget {
         ),
       ),
       child: Container(
-        padding: EdgeInsets.only(left: 20),
         width: double.infinity,
         decoration: BoxDecoration(
           color: Provider.of<ThemeProvider>(context).isDarkMode
@@ -30,6 +29,9 @@ class SearchBox extends StatelessWidget {
         height: 60,
         child: Row(
           children: <Widget>[
+            SizedBox(
+              width: 10,
+            ),
             Icon(Icons.search,
                 color: Provider.of<ThemeProvider>(context).isDarkMode
                     ? DarkTheme.primaryColor
