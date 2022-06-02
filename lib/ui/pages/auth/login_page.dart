@@ -48,11 +48,6 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   child: Container(
-                    decoration: BoxDecoration(
-                      color: Provider.of<ThemeProvider>(context).isDarkMode
-                          ? DarkTheme.backgroundColor
-                          : LightTheme.backgroundColor,
-                    ),
                     height: 400,
                     padding: EdgeInsets.only(
                       top: 38,
@@ -241,6 +236,36 @@ class _LoginPageState extends State<LoginPage> {
                         : ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(content: Text("Login fail.")));
                   },
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                // make a change theme button
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Expanded(child: Container()),
+                    InkWell(
+                      onTap: () {
+                        Provider.of<ThemeProvider>(context, listen: false)
+                            .changeTheme();
+                      },
+                      child: Card(
+                        child: Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: Icon(
+                            Provider.of<ThemeProvider>(context).isDarkMode
+                                ? Icons.brightness_3
+                                : Icons.brightness_7,
+                            color:
+                                Provider.of<ThemeProvider>(context).isDarkMode
+                                    ? Colors.white
+                                    : Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
