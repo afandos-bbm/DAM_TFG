@@ -22,9 +22,7 @@ class DarkTheme {
             ),
           ),
         ),
-        listTileTheme: ListTileThemeData().copyWith(
-          dense: true,
-        ),
+        listTileTheme: ListTileThemeData().copyWith(dense: true),
         elevatedButtonTheme: ElevatedButtonThemeData(
             style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(primaryColor),

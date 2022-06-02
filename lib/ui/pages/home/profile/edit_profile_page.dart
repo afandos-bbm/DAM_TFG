@@ -1,11 +1,13 @@
 import 'dart:io';
 
+import 'package:cuevaDelRecambio/domain/services/providers/theme_provider.dart';
 import 'package:cuevaDelRecambio/domain/utils/parsers.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 
 class EditProfilePage extends StatefulWidget {
   const EditProfilePage({Key key}) : super(key: key);
@@ -18,38 +20,81 @@ class _EditProfilePageState extends State<EditProfilePage> {
   String name = GetIt.I<FirebaseAuth>().currentUser.displayName;
   String email = GetIt.I<FirebaseAuth>().currentUser.email;
   bool emailVerified = GetIt.I<FirebaseAuth>().currentUser.emailVerified;
-  bool phoneVerified = GetIt.I<FirebaseAuth>().currentUser.phoneNumber != null;
+  bool phoneVerified = GetIt.I<FirebaseAuth>().currentUser.phoneNumber != null && GetIt.I<FirebaseAuth>().currentUser.phoneNumber != '';
   String phoneNumber =
-      GetIt.I<FirebaseAuth>().currentUser.phoneNumber ?? "No phone";
+      (GetIt.I<FirebaseAuth>().currentUser.phoneNumber ?? "No phone") != ''
+          ? GetIt.I<FirebaseAuth>().currentUser.phoneNumber
+          : "No phone";
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Padding(
-      padding: const EdgeInsets.all(15.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: 65),
-          Center(
-            child: Text(
-              "Edit Profile",
-              style: Theme.of(context).textTheme.headline4,
+    return SafeArea(
+      child: Scaffold(
+          floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
+          floatingActionButton: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 15,
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Card(
+                    elevation: 6,
+                    shape: RoundedRectangleBorder().copyWith(
+                      borderRadius: BorderRadius.circular(30),
+                      side: BorderSide(
+                        color: Provider.of<ThemeProvider>(context).isDarkMode
+                            ? Colors.white12
+                            : Colors.black12,
+                      ),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Icon(
+                        Icons.arrow_back,
+                        color: Provider.of<ThemeProvider>(context).isDarkMode
+                            ? Colors.white
+                            : Colors.black54,
+                        size: 35,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
-          const SizedBox(height: 24),
-          buildChangeName(context),
-          const SizedBox(height: 10),
-          buildChangePassword(context),
-          const SizedBox(height: 10),
-          buildChangeEmail(context),
-          const SizedBox(height: 10),
-          buildChangePhoneNumber(context),
-          const SizedBox(height: 10),
-          buildChangeAvatar(context),
-        ],
-      ),
-    ));
+          body: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 24),
+                  Center(
+                    child: Text(
+                      "Edit Profile",
+                      style: Theme.of(context).textTheme.headline4,
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  buildChangeName(context),
+                  const SizedBox(height: 10),
+                  buildChangePassword(context),
+                  const SizedBox(height: 10),
+                  buildChangeEmail(context),
+                  const SizedBox(height: 10),
+                  buildChangePhoneNumber(context),
+                  const SizedBox(height: 10),
+                  buildChangeAvatar(context),
+                ],
+              ),
+            ),
+          )),
+    );
   }
 
   buildChangeName(context) => Card(
@@ -340,94 +385,91 @@ class _EditProfilePageState extends State<EditProfilePage> {
             Icon(Icons.edit),
           ]),
           subtitle: Text('$phoneNumber'),
-          onTap: () async {
-            TextEditingController phoneController = TextEditingController();
-            TextEditingController codeController = TextEditingController();
-            await showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    title: Text('Phone Number'),
-                    content: TextField(
-                      controller: phoneController,
-                      decoration: InputDecoration(
-                        hintText: 'Enter your phone number',
-                      ),
-                    ),
-                    actions: [
-                      ElevatedButton(
-                        child: Text('Save'),
-                        onPressed: () async {
-                          Navigator.of(context).pop(true);
-                          String _providerId;
-                          int _code;
-                          await GetIt.I.get<FirebaseAuth>().verifyPhoneNumber(
-                              phoneNumber: phoneController.text,
-                              timeout: Duration(seconds: 60),
-                              verificationCompleted:
-                                  (AuthCredential credential) {
-                                _providerId = credential.providerId;
-                              },
-                              codeSent: (id, code) {
-                                _code = code;
-                              });
+          // onTap: () async {
+          //   TextEditingController phoneController = TextEditingController();
+          //   TextEditingController codeController = TextEditingController();
+          //   await showDialog(
+          //       context: context,
+          //       builder: (BuildContext context) {
+          //         return AlertDialog(
+          //           title: Text('Phone Number'),
+          //           content: TextField(
+          //             controller: phoneController,
+          //             decoration: InputDecoration(
+          //               hintText: 'Enter your phone number',
+          //             ),
+          //           ),
+          //           actions: [
+          //             ElevatedButton(
+          //               child: Text('Save'),
+          //               onPressed: () async {
+          //                 Navigator.of(context).pop(true);
+          //                 String _providerId;
+          //                 int _code;
+          //                 await GetIt.I.get<FirebaseAuth>().verifyPhoneNumber(
+          //                     phoneNumber: phoneController.text,
+          //                     timeout: Duration(seconds: 60),
+          //                     verificationCompleted:
+          //                         (AuthCredential credential) {
+          //                       _providerId = credential.providerId;
+          //                     },
+          //                     codeSent: (id, code) {
+          //                       _code = code;
+          //                     });
 
-                          if (_providerId.isNotEmpty && _code != null) {
-                            showDialog(
-                                context: context,
-                                builder: (context) => AlertDialog(
-                                      title: Text('Code'),
-                                      content: TextField(
-                                        controller: codeController,
-                                        decoration: InputDecoration(
-                                          hintText: 'Enter code',
-                                        ),
-                                      ),
-                                      actions: [
-                                        ElevatedButton(
-                                          child: Text('Save'),
-                                          onPressed: () async {
-                                            if (_code.toString() ==
-                                                codeController.text) {
-                                              AuthCredential credential =
-                                                  PhoneAuthProvider.credential(
-                                                      verificationId:
-                                                          _providerId,
-                                                      smsCode:
-                                                          codeController.text);
-                                              await GetIt.I
-                                                  .get<FirebaseAuth>()
-                                                  .currentUser
-                                                  .updatePhoneNumber(
-                                                      credential);
-                                              Navigator.of(context).pop(true);
-                                              ScaffoldMessenger.of(context)
-                                                  .showSnackBar(SnackBar(
-                                                content: Text(
-                                                    'Phone number changed'),
-                                              ));
-                                            } else {
-                                              Navigator.of(context).pop(false);
-                                              ScaffoldMessenger.of(context)
-                                                  .showSnackBar(SnackBar(
-                                                content: Text(
-                                                    'Phone number not changed'),
-                                              ));
-                                            }
-                                          },
-                                        ),
-                                      ],
-                                    ));
-                          }
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: Text('Name changed'),
-                          ));
-                        },
-                      ),
-                    ],
-                  );
-                });
-          },
+          //                 if (_providerId.isNotEmpty && _code != null) {
+          //                   showDialog(
+          //                       context: context,
+          //                       builder: (context) => AlertDialog(
+          //                             title: Text('Code'),
+          //                             content: TextField(
+          //                               controller: codeController,
+          //                               decoration: InputDecoration(
+          //                                 hintText: 'Enter code',
+          //                               ),
+          //                             ),
+          //                             actions: [
+          //                               ElevatedButton(
+          //                                 child: Text('Save'),
+          //                                 onPressed: () async {
+          //                                   if (_code.toString() ==
+          //                                       codeController.text) {
+          //                                     AuthCredential credential =
+          //                                         PhoneAuthProvider.credential(
+          //                                             verificationId:
+          //                                                 _providerId,
+          //                                             smsCode:
+          //                                                 codeController.text);
+          //                                     await GetIt.I
+          //                                         .get<FirebaseAuth>()
+          //                                         .currentUser
+          //                                         .updatePhoneNumber(
+          //                                             credential);
+          //                                     Navigator.of(context).pop(true);
+          //                                     ScaffoldMessenger.of(context)
+          //                                         .showSnackBar(SnackBar(
+          //                                       content: Text(
+          //                                           'Phone number changed'),
+          //                                     ));
+          //                                   } else {
+          //                                     Navigator.of(context).pop(false);
+          //                                     ScaffoldMessenger.of(context)
+          //                                         .showSnackBar(SnackBar(
+          //                                       content: Text(
+          //                                           'Phone number not changed'),
+          //                                     ));
+          //                                   }
+          //                                 },
+          //                               ),
+          //                             ],
+          //                           ));
+          //                 }
+          //               },
+          //             ),
+          //           ],
+          //         );
+          //       });
+          // },
         ),
       );
 }
