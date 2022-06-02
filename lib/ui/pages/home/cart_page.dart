@@ -1,6 +1,7 @@
 import 'package:cuevaDelRecambio/domain/entities/product.dart';
 import 'package:cuevaDelRecambio/domain/services/providers/cart_provider.dart';
 import 'package:cuevaDelRecambio/domain/services/providers/theme_provider.dart';
+import 'package:cuevaDelRecambio/ui/pages/product_page.dart';
 import 'package:cuevaDelRecambio/ui/themes/dark_theme.dart';
 import 'package:cuevaDelRecambio/ui/themes/light_theme.dart';
 import 'package:flutter/material.dart';
@@ -90,118 +91,159 @@ class _CartPageState extends State<CartPage> {
       snapshot.loading = true;
       snapshot.cart.forEach((element) {
         listView = ListView.builder(
-          itemBuilder: (_, index) => Container(
-            height: 120,
-            margin: EdgeInsets.all(5),
-            child: Row(
-              children: <Widget>[
-                Container(
-                    width: 100,
-                    height: 100,
-                    margin: EdgeInsets.all(10),
-                    child: Image.asset(snapshot.cart[index].image,
-                        fit: BoxFit.fitWidth)),
-                Padding(
-                  padding: const EdgeInsets.only(top: 20, left: 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(snapshot.cart[index].name),
-                      Text(
-                        "${snapshot.cart[index].price}€",
-                        style: TextStyle(
-                            color:
-                                Provider.of<ThemeProvider>(context).isDarkMode
-                                    ? DarkTheme.primaryColor
-                                    : LightTheme.primaryColor),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        children: [
-                          Container(
-                            height: 39,
-                            width: 120,
-                            decoration: BoxDecoration(
-                                color: Provider.of<ThemeProvider>(context)
-                                        .isDarkMode
-                                    ? DarkTheme.lightColor
-                                    : LightTheme.lightColor,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(5))),
-                            child: Row(
-                              children: <Widget>[
-                                Container(
-                                    width: 40,
-                                    alignment: Alignment.center,
-                                    child: TextButton(
-                                      child: Text("+",
+          itemBuilder: (_, index) => GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProductPage(
+                    id: element.id,
+                    image: element.image,
+                    title: element.name,
+                    brand: element.brand,
+                    description: element.description,
+                    price: element.price,
+                    tags: element.tags,
+                  ),
+                ),
+              );
+            },
+            child: Container(
+              height: 120,
+              margin: EdgeInsets.all(5),
+              child: Row(
+                children: <Widget>[
+                  Container(
+                      width: 100,
+                      height: 100,
+                      margin: EdgeInsets.all(10),
+                      child: Image.asset(snapshot.cart[index].image,
+                          fit: BoxFit.fitWidth)),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20, left: 20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        snapshot.cart[index].name.length > 20
+                            ? Text(
+                                snapshot.cart[index].name.substring(0, 20) +
+                                    "...",
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    color: Provider.of<ThemeProvider>(context)
+                                            .isDarkMode
+                                        ? DarkTheme.reverseColor
+                                        : LightTheme.reverseColor,
+                                    fontWeight: FontWeight.w500),
+                              )
+                            : Text(
+                                snapshot.cart[index].name,
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    color: Provider.of<ThemeProvider>(context)
+                                            .isDarkMode
+                                        ? DarkTheme.reverseColor
+                                        : LightTheme.reverseColor,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                        Text(
+                          "${snapshot.cart[index].price}€",
+                          style: TextStyle(
+                              color:
+                                  Provider.of<ThemeProvider>(context).isDarkMode
+                                      ? DarkTheme.primaryColor
+                                      : LightTheme.primaryColor),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              height: 39,
+                              width: 120,
+                              decoration: BoxDecoration(
+                                  color: Provider.of<ThemeProvider>(context)
+                                          .isDarkMode
+                                      ? DarkTheme.lightColor
+                                      : LightTheme.lightColor,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(5))),
+                              child: Row(
+                                children: <Widget>[
+                                  Container(
+                                      width: 40,
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text("+",
+                                            style: TextStyle(
+                                                color:
+                                                    Provider.of<ThemeProvider>(
+                                                                context)
+                                                            .isDarkMode
+                                                        ? DarkTheme.primaryColor
+                                                        : LightTheme
+                                                            .primaryColor)),
+                                        onPressed: () {
+                                          snapshot
+                                              .addProduct(snapshot.cart[index]);
+                                        },
+                                      )),
+                                  Container(
+                                      width: 40,
+                                      alignment: Alignment.center,
+                                      child: Text(snapshot.cart[index].quantity
+                                          .toString())),
+                                  Container(
+                                      width: 20,
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(
+                                          "-",
                                           style: TextStyle(
                                               color: Provider.of<ThemeProvider>(
                                                           context)
                                                       .isDarkMode
                                                   ? DarkTheme.primaryColor
-                                                  : LightTheme.primaryColor)),
-                                      onPressed: () {
-                                        snapshot
-                                            .addProduct(snapshot.cart[index]);
-                                      },
-                                    )),
-                                Container(
-                                    width: 40,
-                                    alignment: Alignment.center,
-                                    child: Text(snapshot.cart[index].quantity
-                                        .toString())),
-                                Container(
-                                    width: 20,
-                                    alignment: Alignment.center,
-                                    child: TextButton(
-                                      child: Text(
-                                        "-",
-                                        style: TextStyle(
-                                            color: Provider.of<ThemeProvider>(
-                                                        context)
-                                                    .isDarkMode
-                                                ? DarkTheme.primaryColor
-                                                : LightTheme.primaryColor),
-                                      ),
-                                      onPressed: () {
-                                        snapshot.removeProduct(
-                                            snapshot.cart[index], false);
-                                      },
-                                    )),
-                              ],
+                                                  : LightTheme.primaryColor),
+                                        ),
+                                        onPressed: () {
+                                          snapshot.removeProduct(
+                                              snapshot.cart[index], false);
+                                        },
+                                      )),
+                                ],
+                              ),
                             ),
-                          ),
-                          SizedBox(width: 10),
-                          Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.red,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(5))),
-                              height: 39,
-                              alignment: Alignment.center,
-                              child: TextButton(
-                                child: Icon(
-                                  Icons.restore_from_trash,
-                                  color: Colors.white,
-                                ),
-                                onPressed: () {
-                                  GetIt.I<CartProvider>().removeProduct(
-                                      Product.productFromId(
-                                          snapshot.cart[index].id),
-                                      true);
-                                  //ScaffoldMessenger.of(context).showSnackBar(
-                                  //    SnackBar(content: Text("Removed from cart.")));
-                                },
-                              )),
-                        ],
-                      ),
-                    ],
-                  ),
-                )
-              ],
+                            SizedBox(width: 10),
+                            Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.red,
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(5))),
+                                height: 39,
+                                alignment: Alignment.center,
+                                child: TextButton(
+                                  child: Icon(
+                                    Icons.restore_from_trash,
+                                    color: Colors.white,
+                                  ),
+                                  onPressed: () {
+                                    GetIt.I<CartProvider>().removeProduct(
+                                        Product.productFromId(
+                                            snapshot.cart[index].id),
+                                        true);
+                                    //ScaffoldMessenger.of(context).showSnackBar(
+                                    //    SnackBar(content: Text("Removed from cart.")));
+                                  },
+                                )),
+                          ],
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
           itemCount: snapshot.cart.length,
