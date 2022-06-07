@@ -13,11 +13,11 @@ jobs:
     container:
       image: fischerscode/flutter-sudo
     steps:
-      - run: cd /build
+      - run: cd /home/flutter
       - run: sudo git clone https://github.com/alejandrofan2/DAM_TFG
       - run: cd DAM_TFG
-      - run: sudo chown -R flutter:flutter /build
-      - run: sudo chmod -R 770 /build
+      - run: sudo chown -R flutter:flutter /home/flutter
+      - run: sudo chmod -R 770 /home/flutter
       - name: Install dependencies
         run:  sudo flutter pub get
       - name: Analyze Dart
