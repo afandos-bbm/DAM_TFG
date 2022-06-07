@@ -11,10 +11,12 @@ jobs:
     name: Example
     runs-on: ubuntu-latest
     container:
-      image: fischerscode/flutter
+      image: fischerscode/flutter-sudo
     steps:
+      - run: sudo su
       - name: Checkout code
         uses: actions/checkout@v2
+      - run: exit
       - name: Install dependencies
         run: dart pub get
       - name: Analyze Dart
