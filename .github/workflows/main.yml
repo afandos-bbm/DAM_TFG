@@ -29,7 +29,7 @@ jobs:
         uses: zgosalvez/github-actions-analyze-dart@v1
         with:
           working-directory: /home/flutter/DAM_TFG
-  build:
+  release:
     name: "Build and release"
     runs-on: ubuntu-20.04
     steps:
