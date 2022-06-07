@@ -9,7 +9,7 @@ on:
 name: "Scan and Release"
 jobs: 
   scan:
-    name: Scan
+    name: Scan flutter
     runs-on: ubuntu-latest
     container:
       image: fischerscode/flutter-sudo
