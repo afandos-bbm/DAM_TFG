@@ -12,11 +12,6 @@ jobs:
     name: "Build and release"
     runs-on: ubuntu-20.04
     steps:
-      - name: Set env
-        id: vars
-        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
-        env:
-          RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
       - uses: actions/checkout@v1
         with:
           fetch-depth: 0
@@ -31,6 +26,7 @@ jobs:
       - name: "Push to releases"
         uses: ncipollo/release-action@v1
         with:
+          bump_version_scheme: minor
+          tag_prefix: v
           artifacts: "build/app/outputs/apk/debug/*"
           token: ${{ secrets.token }}
-          tag: $RELEASE_VERSION
