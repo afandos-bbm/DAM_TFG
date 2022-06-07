@@ -16,9 +16,9 @@ jobs:
       - run: cd /home/flutter
       - run: sudo git clone https://github.com/alejandrofan2/DAM_TFG
       - run: cd DAM_TFG
-      - run: sudo chown -R flutter:flutter /home/flutter
-      - run: sudo chmod -R 770 /home/flutter
+      - run: sudo chown -R flutter:flutter .
+      - run: sudo chmod -R 770 .
       - name: Install dependencies
-        run:  ../flutter-sdk/bin/flutter pub get
+        run:  flutter pub get
       - name: Analyze Dart
         uses: zgosalvez/github-actions-analyze-dart@v1
