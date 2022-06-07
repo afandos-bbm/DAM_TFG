@@ -26,7 +26,5 @@ jobs:
       - name: "Push to releases"
         uses: ncipollo/release-action@v1
         with:
-          bump_version_scheme: minor
-          tag_prefix: v
           artifacts: "build/app/outputs/apk/debug/*"
           token: ${{ secrets.token }}
