@@ -12,6 +12,11 @@ jobs:
     name: "Build and release"
     runs-on: ubuntu-20.04
     steps:
+      - name: Set env
+        id: vars
+        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+        env:
+          RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
       - uses: actions/checkout@v1
         with:
           fetch-depth: 0
@@ -28,3 +33,4 @@ jobs:
         with:
           artifacts: "build/app/outputs/apk/debug/*"
           token: ${{ secrets.token }}
+          tag: $RELEASE_VERSION
