@@ -18,8 +18,9 @@ jobs:
       - run: sudo chmod -R 777 /home/flutter
       - run: sudo chmod -R 777 /github
       - run: cd /home/flutter/DAM_TFG
-      - run: ls .
       - name: Install dependencies
-        run:  flutter pub get
+        run: |
+          cd /home/flutter/DAM_TFG
+          flutter pub get
       - name: Analyze Dart
         uses: zgosalvez/github-actions-analyze-dart@v1
