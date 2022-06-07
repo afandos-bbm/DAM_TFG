@@ -24,3 +24,5 @@ jobs:
           flutter pub get
       - name: Analyze Dart
         uses: zgosalvez/github-actions-analyze-dart@v1
+        with:
+          working-directory: /home/flutter/DAM_TFG
