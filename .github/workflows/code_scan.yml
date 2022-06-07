@@ -14,9 +14,9 @@ jobs:
       image: fischerscode/flutter-sudo
     steps:
       - run: cd /home/flutter
-      - run: git clone https://github.com/alejandrofan2/DAM_TFG
+      - run: sudo git clone https://github.com/alejandrofan2/DAM_TFG
       - run: cd DAM_TFG
       - name: Install dependencies
-        run: dart pub get
+        run: flutter pub get
       - name: Analyze Dart
         uses: zgosalvez/github-actions-analyze-dart@v1
