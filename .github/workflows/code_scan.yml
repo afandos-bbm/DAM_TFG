@@ -13,6 +13,7 @@ jobs:
     container:
       image: fischerscode/flutter-sudo
     steps:
+      - run: sudo su
       - run: git clone https://github.com/alejandrofan2/DAM_TFG
       - run: cd DAM_TFG
       - name: Install dependencies
