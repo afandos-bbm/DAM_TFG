@@ -6,25 +6,42 @@ on:
     tags:
       - "v*"
 
-name: "Build and release"
+name: "Scan, Build and release"
 jobs: 
+  scan:
+    name: Scan Flutter
+    runs-on: ubuntu-latest
+    container:
+      image: fischerscode/flutter-sudo
+    steps:
+      - name: Clone repo
+        run: |
+          git clone https://github.com/alejandrofan2/DAM_TFG /home/flutter/DAM_TFG
+          sudo chown -R flutter:flutter /home/flutter
+          sudo chmod -R 777 /home/flutter
+          sudo chmod -R 777 /github
+          cd /home/flutter/DAM_TFG
+      - name: Install dependencies
+        run: |
+          cd /home/flutter/DAM_TFG
+          flutter pub get
+      - name: Analyze Dart
+        uses: zgosalvez/github-actions-analyze-dart@v1
+        with:
+          working-directory: /home/flutter/DAM_TFG
   build:
     name: "Build and release"
     runs-on: ubuntu-20.04
     steps:
-      - name: Wait for tests to succeed
-        uses: lewagon/wait-on-check-action@v1.0.0
-        with:
-          ref: ${{ github.ref }}
-          check-name: 'Code Scan'
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          wait-interval: 10
-      - uses: actions/checkout@v1
+      - name: Clone repo
+        uses: actions/checkout@v1
         with:
           fetch-depth: 0
-      - uses: actions/setup-java@v1
+      - name: Setup Java
+        uses: actions/setup-java@v1
         with:
           java-version: '12.x'
+      - name: Setup Flutter
       - uses: subosito/flutter-action@v1
         with:
           flutter-version: '3.0.0'
