@@ -19,6 +19,7 @@ jobs:
       - run: cd DAM_TFG
       - run: sudo chown -R flutter:flutter .
       - run: sudo chmod -R 777 /home/flutter
+      - run: sudo chmod -R 777 /github
       - name: Install dependencies
         run:  flutter pub get
       - name: Analyze Dart
