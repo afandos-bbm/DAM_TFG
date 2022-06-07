@@ -8,16 +8,18 @@ on:
 name: 'Code Scan'
 jobs:
   build:
-    name: Example
+    name: Scan Flutter
     runs-on: ubuntu-latest
     container:
       image: fischerscode/flutter-sudo
     steps:
-      - run: git clone https://github.com/alejandrofan2/DAM_TFG /home/flutter/DAM_TFG
-      - run: sudo chown -R flutter:flutter /home/flutter
-      - run: sudo chmod -R 777 /home/flutter
-      - run: sudo chmod -R 777 /github
-      - run: cd /home/flutter/DAM_TFG
+      - name: Clone repo
+        run: |
+          git clone https://github.com/alejandrofan2/DAM_TFG /home/flutter/DAM_TFG
+          sudo chown -R flutter:flutter /home/flutter
+          sudo chmod -R 777 /home/flutter
+          sudo chmod -R 777 /github
+          cd /home/flutter/DAM_TFG
       - name: Install dependencies
         run: |
           cd /home/flutter/DAM_TFG
