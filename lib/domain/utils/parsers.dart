@@ -2,6 +2,8 @@
 // this file will be used to parse the json files
 // and convert them to the domain entities.
 
+import 'package:cuevaDelRecambio/domain/entities/product.dart';
+
 List<int> parseIntList(List<dynamic> data) {
   List<int> parsed = List<int>.empty(growable: true);
   data.forEach((element) {
@@ -35,4 +37,12 @@ double parsePrice(double data) {
   } else {
     return data;
   }
+}
+
+Map<String, dynamic> parseCart(List<Product> cart) {
+  Map<String, dynamic> data = Map<String, dynamic>();
+  for (int i = 0; i < cart.length; i++) {
+    data[i.toString()] = cart[i].toCart();
+  }
+  return data;
 }

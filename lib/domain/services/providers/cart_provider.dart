@@ -13,6 +13,7 @@ class CartProvider with ChangeNotifier {
     _cart.forEach((element) {
       if (element.quantity > 0) {
         totalPrice += element.quantity * element.price;
+        totalPrice = parsePrice(totalPrice);
       }
     });
   }
@@ -27,6 +28,7 @@ class CartProvider with ChangeNotifier {
     cart.forEach((element) {
       if (element.quantity > 0) {
         totalPrice += element.quantity * element.price;
+        totalPrice = parsePrice(totalPrice);
       }
     });
     _cart = cart;
@@ -37,11 +39,11 @@ class CartProvider with ChangeNotifier {
     int index = _cart.indexWhere((element) => element.id == product.id);
 
     if (index == -1) {
-      totalPrice += product.price;
+      totalPrice = parsePrice(totalPrice + product.price);
       _cart.add(product);
     } else {
       _cart[index].quantity++;
-      totalPrice += product.price;
+      totalPrice = parsePrice(totalPrice + product.price);
     }
 
     updateCartToFB(_cart);
@@ -59,22 +61,24 @@ class CartProvider with ChangeNotifier {
           }
         });
         _cart.removeWhere((element) => element.id == product.id);
-        totalPrice = 0;
+        totalPrice = parsePrice(totalPrice - (quantity * product.price));
       } else {
         _cart.forEach((element) {
           if (element.id == product.id) {
             element.quantity--;
           }
         });
-        totalPrice -= product.price;
-        totalPrice = parsePrice(totalPrice);
+        totalPrice = parsePrice(totalPrice - product.price);
       }
     } else {
       _cart.removeWhere((element) {
         return element.id == product.id;
       });
-      totalPrice -= product.price;
-      totalPrice = parsePrice(totalPrice);
+      totalPrice = parsePrice(totalPrice - product.price);
+
+      if (_cart.isEmpty) {
+        totalPrice = 0;
+      }
     }
     updateCartToFB(_cart);
     notifyListeners();

@@ -53,7 +53,7 @@ class _UserPageState extends State<UserPage> {
   Widget buildName(User user) => Column(
         children: [
           Text(
-            user.displayName,
+            user.displayName ?? "No name",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
           ),
           const SizedBox(height: 4),

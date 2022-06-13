@@ -17,11 +17,11 @@ class ProductList extends StatelessWidget {
     List<dynamic> jsonResponse = json.decode(jsonString);
     jsonResponse.forEach((element) => products.add(Product(
           id: element['id'],
-          name: element['nombre'],
-          image: element['imagen'],
-          brand: element['marca'],
-          price: element['precio'],
-          description: element['descripcion'],
+          name: element['name'],
+          image: element['image'],
+          brand: element['brand'],
+          price: element['price'],
+          description: element['description'],
           tags: List<String>.from(element['tags']),
         )));
     List<ProductCard> categories = [];

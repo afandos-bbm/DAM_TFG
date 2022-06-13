@@ -51,12 +51,9 @@ class ProductCard extends StatelessWidget {
             children: <Widget>[
               Container(
                 width: 150,
-                child: FittedBox(
-                  fit: BoxFit.fitWidth,
-                  child: Image.asset(
-                    image,
-                    fit: BoxFit.cover,
-                  ),
+                child: Image.asset(
+                  image,
+                  fit: BoxFit.cover,
                 ),
               ),
               SizedBox(

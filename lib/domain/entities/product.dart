@@ -11,14 +11,12 @@ class Product {
   double price;
   String description;
   List<String> tags;
-  List<dynamic> variantes;
   int quantity = 1;
 
   Product({
     this.id,
     this.name,
     this.image,
-    this.variantes,
     this.brand,
     this.price,
     this.description,
@@ -27,24 +25,35 @@ class Product {
 
   Product.fromJson(Map<String, dynamic> json)
       : id = json['id'],
-        name = json['nombre'],
-        brand = json['marca'],
-        price = json['precio'],
-        description = json['descripcion'],
+        name = json['name'],
+        brand = json['brand'],
+        price = json['price'],
+        description = json['description'],
         tags = List<String>.from(json['tags']),
-        image = json['imagen'],
-        variantes = json['variantes'];
+        image = json['image'],
+        quantity = json['quantity'];
 
   Map<String, dynamic> toJson() => {
         'id': id,
-        'nombre': name,
-        'marca': brand,
-        'precio': price,
-        'descripcion': description,
+        'name': name,
+        'brand': brand,
+        'price': price,
+        'description': description,
         'tags': tags,
-        'imagen': image,
-        'variantes': variantes,
+        'image': image,
+        'quantity': quantity,
       };
+
+  Map<String, dynamic> toCart() {
+    var map = Map<String, dynamic>();
+    map['id'] = id;
+    map['price'] = price;
+    map['quantity'] = quantity;
+    double total = price * quantity;
+    map['total'] = total;
+
+    return map;
+  }
 
   // This method will be used to search products by id into the json file.
   static Product productFromId(String id, {int quantity = 1}) {

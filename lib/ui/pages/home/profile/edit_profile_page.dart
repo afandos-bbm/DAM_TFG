@@ -103,7 +103,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
           title: Text('Name'),
           leading: Icon(Icons.person),
           trailing: Icon(Icons.edit),
-          subtitle: Text(name),
+          subtitle: Text(name ?? 'No name'),
           onTap: () async {
             TextEditingController controller = TextEditingController();
             bool isSaved = await showDialog(
@@ -384,7 +384,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
             const SizedBox(width: 10),
             Icon(Icons.edit),
           ]),
-          subtitle: Text('$phoneNumber'),
+          subtitle: Text(phoneNumber ?? 'No phone number'),
           // onTap: () async {
           //   TextEditingController phoneController = TextEditingController();
           //   TextEditingController codeController = TextEditingController();

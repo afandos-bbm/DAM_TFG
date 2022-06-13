@@ -5,7 +5,9 @@ import 'package:cuevaDelRecambio/ui/pages/auth/register_page.dart';
 import 'package:cuevaDelRecambio/ui/themes/dark_theme.dart';
 import 'package:cuevaDelRecambio/ui/themes/light_theme.dart';
 import 'package:cuevaDelRecambio/ui/widgets/social_button.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
@@ -192,15 +194,21 @@ class _LoginPageState extends State<LoginPage> {
                                   "Login",
                                   style: TextStyle(color: Colors.white),
                                 ),
-                                onPressed: () async => await login(
+                                onPressed: () async {
+                                  String code = await login(
                                         context,
                                         parseEmail(_emailController.text),
-                                        _passwordController.text)
-                                    ? Navigator.of(context)
-                                        .pushReplacementNamed("/home")
-                                    : ScaffoldMessenger.of(context)
+                                        _passwordController.text);
+                                  if (code != null) {
+                                    ScaffoldMessenger.of(context)
                                         .showSnackBar(SnackBar(
-                                            content: Text("Login failed"))),
+                                      content: Text(code),
+                                    ));
+                                  } else if (code == null && GetIt.I<FirebaseAuth>().currentUser != null) {
+                                    Navigator.of(context).pushReplacementNamed(
+                                        '/home');
+                                  }
+                                },
                               ))
                         ]),
                   ),
