@@ -9,23 +9,22 @@ import 'package:google_sign_in/google_sign_in.dart';
 // It returns a Future that resolves to the FirebaseUser if the login is successful.
 // The method notifies the listeners of FirebaseAuth.
 // The listeners make the UI update.
-Future<bool> login(BuildContext context, String email, String password) async {
+Future<String> login(BuildContext context, String email, String password) async {
   try {
-    GetIt.I<FirebaseAuth>()
+    await GetIt.I<FirebaseAuth>()
         .signInWithEmailAndPassword(email: email, password: password);
-
-    return true;
+    return null;
   } on FirebaseAuthException catch (e) {
-    if (e.code == 'weak-password')
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Try using a strong password.")));
-    else if (e.code == 'email-already-in-use')
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text("That email is in use yet.")));
+    if (e.code == 'invalid-email')
+      return 'Invalid email address';
+    else if (e.code == 'user-not-found')
+      return 'User not found';
+    else if (e.code == 'wrong-password')
+      return 'Wrong password';
     else
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text("An error occurred.")));
-    return false;
+      return 'Unknown error';
+  } on Exception catch (_) {
+    return 'Unknown error';
   }
 }
 
